@@ -1,55 +1,1060 @@
 <!DOCTYPE html>
-<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin — Bebekan Tengah</title>
-<style>
-:root{--g:#087443;--d:#064d31;--l:#eef9f1;--r:#c43d3d;--m:#65766e}*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7f5;color:#17352a}button,input,textarea{font:inherit}button{cursor:pointer}.top{background:var(--d);color:#fff;padding:16px 22px;display:flex;justify-content:space-between;align-items:center}.wrap{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 61px)}aside{background:#fff;border-right:1px solid #dde7e0;padding:15px}.nav{display:block;width:100%;padding:11px;border:0;background:#fff;text-align:left;border-radius:9px;margin:4px 0}.nav.active,.nav:hover{background:var(--l);color:var(--g);font-weight:700}.main{padding:22px;max-width:1100px}.panel{background:#fff;border:1px solid #e0e9e4;border-radius:15px;padding:20px;margin-bottom:18px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{margin-bottom:12px}.field label{display:block;font-weight:700;font-size:13px;margin-bottom:5px}input,textarea{width:100%;padding:10px;border:1px solid #d5e0da;border-radius:8px}textarea{min-height:100px}.btn{background:var(--g);color:#fff;border:0;border-radius:8px;padding:10px 15px;font-weight:700}.btn.gray{background:#e9f1ec;color:var(--g)}.btn.red{background:#fff0f0;color:var(--r)}.item{border:1px solid #e0e8e3;border-radius:11px;padding:13px;margin:9px 0}.hidden{display:none!important}.login{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#064d31,#0b8a50)}.loginbox{background:#fff;padding:30px;border-radius:18px;width:min(420px,90%)}.muted{color:var(--m);font-size:13px}.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat div{background:var(--l);padding:15px;border-radius:10px}.stat b{display:block;font-size:25px;color:var(--g)}@media(max-width:760px){.wrap{grid-template-columns:1fr}aside{display:flex;overflow:auto}.nav{min-width:max-content}.grid,.stat{grid-template-columns:1fr}.main{padding:12px}}
-</style></head><body>
-<div id="login" class="login"><div class="loginbox"><h1>🔐 Admin Kampung</h1><p class="muted">Bebekan Tengah RT 17 / RW 05</p><div class="field"><label>Email Admin</label><input id="email" type="email" placeholder="admin@email.com"></div><div class="field"><label>Password</label><input id="password" type="password"></div><button class="btn" onclick="login()">Masuk</button><p id="loginMsg"></p></div></div>
-<div id="app" class="hidden"><header class="top"><b>🌿 Admin Bebekan Tengah</b><button class="btn gray" onclick="logout()">Keluar</button></header><div class="wrap"><aside>
-<button class="nav active" onclick="tab('dash',this)">📊 Dashboard</button><button class="nav" onclick="tab('general',this)">🏠 Beranda</button><button class="nav" onclick="tab('profile',this)">🏘️ Profil</button><button class="nav" onclick="tab('staff',this)">👥 Pengurus</button><button class="nav" onclick="tab('news',this)">📢 Informasi</button><button class="nav" onclick="tab('events',this)">📅 Kegiatan</button><button class="nav" onclick="tab('gallery',this)">📸 Galeri</button><button class="nav" onclick="tab('contact',this)">📞 Kontak</button>
-</aside><main class="main">
-<section id="dash" class="tab"><div class="panel"><h2>Dashboard</h2><p id="who"></p><div class="stat"><div><b id="si">0</b>Informasi</div><div><b id="se">0</b>Kegiatan</div><div><b id="sg">0</b>Foto</div></div></div></section>
-<section id="general" class="tab hidden"><div class="panel"><h2>Beranda</h2><div class="grid"><div class="field"><label>Judul</label><input id="gt"></div><div class="field"><label>RT / RW</label><input id="gs"></div><div class="field"><label>Slogan</label><input id="gsl"></div><div class="field"><label>URL Foto Banner</label><input id="gi"></div></div><div class="field"><label>Sambutan</label><textarea id="gw"></textarea></div><button class="btn" onclick="saveGeneral()">Simpan</button></div></section>
-<section id="profile" class="tab hidden"><div class="panel"><h2>Profil</h2><div class="grid"><div class="field"><label>Kelurahan</label><input id="kel"></div><div class="field"><label>Kecamatan</label><input id="kec"></div><div class="field"><label>Kota/Kabupaten</label><input id="kota"></div><div class="field"><label>Provinsi</label><input id="prov"></div></div><div class="field"><label>Profil</label><textarea id="p"></textarea></div><div class="field"><label>Sejarah</label><textarea id="h"></textarea></div><button class="btn" onclick="saveProfile()">Simpan</button></div></section>
-<section id="staff" class="tab hidden"><div class="panel"><h2>Pengurus</h2><div id="staffList"></div><button class="btn" onclick="addStaff()">+ Tambah</button></div></section>
-<section id="news" class="tab hidden"><div class="panel"><h2>Informasi</h2><div id="newsList"></div><button class="btn" onclick="addNews()">+ Tambah</button></div></section>
-<section id="events" class="tab hidden"><div class="panel"><h2>Kegiatan</h2><div id="eventList"></div><button class="btn" onclick="addEvent()">+ Tambah</button></div></section>
-<section id="gallery" class="tab hidden"><div class="panel"><h2>Galeri</h2><p class="muted">Masukkan URL foto publik. Bisa memakai URL gambar dari hosting/cloud.</p><div id="galleryList"></div><button class="btn" onclick="addGallery()">+ Tambah</button></div></section>
-<section id="contact" class="tab hidden"><div class="panel"><h2>Kontak</h2><div class="grid"><div class="field"><label>Ketua RT</label><input id="cn"></div><div class="field"><label>WhatsApp</label><input id="cw"></div><div class="field"><label>Email</label><input id="ce"></div><div class="field"><label>Alamat</label><input id="ca"></div><div class="field"><label>Google Maps URL</label><input id="cm"></div></div><button class="btn" onclick="saveContact()">Simpan</button></div></section>
-</main></div></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Kampung Bebekan Tengah</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial,sans-serif;
+      background:#f3f7f5;
+      color:#183027
+    }
+    .login{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px
+    }
+    .box{
+      width:100%;
+      max-width:420px;
+      background:white;
+      padding:30px;
+      border-radius:20px;
+      box-shadow:0 10px 35px rgba(0,0,0,.1)
+    }
+    h1{margin-top:0;color:#16834a}
+    input,textarea,select{
+      width:100%;
+      padding:12px;
+      margin:7px 0 15px;
+      border:1px solid #d5e3db;
+      border-radius:10px;
+      font-size:15px
+    }
+    button{
+      border:0;
+      padding:12px 18px;
+      border-radius:10px;
+      background:#16834a;
+      color:white;
+      cursor:pointer;
+      font-weight:bold
+    }
+    button.danger{background:#c62828}
+    .hidden{display:none}
+    .app{min-height:100vh}
+    header{
+      background:#16834a;
+      color:white;
+      padding:18px 25px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center
+    }
+    nav{
+      background:white;
+      padding:12px;
+      display:flex;
+      gap:8px;
+      overflow:auto;
+      box-shadow:0 2px 10px rgba(0,0,0,.05)
+    }
+    nav button{
+      background:#eaf7ef;
+      color:#16834a;
+      white-space:nowrap
+    }
+    nav button.active{
+      background:#16834a;
+      color:white
+    }
+    main{
+      max-width:1100px;
+      margin:auto;
+      padding:25px
+    }
+    .card{
+      background:white;
+      padding:20px;
+      border-radius:16px;
+      margin-bottom:20px;
+      box-shadow:0 5px 20px rgba(0,0,0,.06)
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:15px
+    }
+    .stat{
+      background:#eaf7ef;
+      padding:20px;
+      border-radius:15px
+    }
+    .stat b{
+      display:block;
+      font-size:28px;
+      color:#16834a
+    }
+    .item{
+      border:1px solid #dce9e1;
+      padding:15px;
+      border-radius:12px;
+      margin:10px 0
+    }
+    .item-actions{
+      display:flex;
+      gap:8px;
+      margin-top:10px
+    }
+    .msg{
+      padding:10px;
+      border-radius:10px;
+      margin-bottom:15px;
+      background:#fff3cd;
+      color:#664d03
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage" class="login">
+  <div class="box">
+    <h1>Admin Kampung</h1>
+    <p>Kampung Bebekan Tengah RT 17 / RW 05</p>
+
+    <div id="loginMsg"></div>
+
+    <label>Email Admin</label>
+    <input id="email" type="email" placeholder="email admin">
+
+    <label>Password</label>
+    <input id="password" type="password" placeholder="password">
+
+    <button onclick="login()" style="width:100%">
+      LOGIN
+    </button>
+  </div>
+</div>
+
+
+<!-- APP -->
+<div id="app" class="app hidden">
+
+  <header>
+    <div>
+      <b>ADMIN KAMPUNG</b><br>
+      <small>Kampung Bebekan Tengah RT 17 / RW 05</small>
+    </div>
+
+    <button onclick="logout()">Keluar</button>
+  </header>
+
+  <nav>
+    <button onclick="showTab('dashboard')" id="btn-dashboard">Dashboard</button>
+    <button onclick="showTab('content')" id="btn-content">Profil</button>
+    <button onclick="showTab('staff')" id="btn-staff">Pengurus</button>
+    <button onclick="showTab('announcement')" id="btn-announcement">Informasi</button>
+    <button onclick="showTab('events')" id="btn-events">Agenda</button>
+    <button onclick="showTab('gallery')" id="btn-gallery">Galeri</button>
+    <button onclick="showTab('contact')" id="btn-contact">Kontak</button>
+  </nav>
+
+  <main>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="tab">
+      <div class="card">
+        <h2>Dashboard</h2>
+        <p>Selamat datang di panel admin Kampung Bebekan Tengah.</p>
+
+        <div class="grid">
+          <div class="stat">
+            <span>Pengurus</span>
+            <b id="countStaff">0</b>
+          </div>
+
+          <div class="stat">
+            <span>Informasi</span>
+            <b id="countAnnouncement">0</b>
+          </div>
+
+          <div class="stat">
+            <span>Agenda</span>
+            <b id="countEvents">0</b>
+          </div>
+
+          <div class="stat">
+            <span>Galeri</span>
+            <b id="countGallery">0</b>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PROFIL -->
+    <section id="content" class="tab hidden">
+      <div class="card">
+        <h2>Edit Profil Kampung</h2>
+
+        <label>Judul Hero</label>
+        <input id="hero_title">
+
+        <label>Sub Judul</label>
+        <input id="hero_sub">
+
+        <label>Slogan</label>
+        <input id="slogan">
+
+        <label>Sambutan</label>
+        <textarea id="welcome" rows="5"></textarea>
+
+        <label>URL Foto Hero</label>
+        <input id="hero_image">
+
+        <label>Profil Kampung</label>
+        <textarea id="profile" rows="5"></textarea>
+
+        <label>Sejarah</label>
+        <textarea id="history" rows="5"></textarea>
+
+        <label>Kelurahan</label>
+        <input id="kelurahan">
+
+        <label>Kecamatan</label>
+        <input id="kecamatan">
+
+        <label>Kota</label>
+        <input id="kota">
+
+        <label>Provinsi</label>
+        <input id="provinsi">
+
+        <button onclick="saveContent()">Simpan Profil</button>
+      </div>
+    </section>
+
+
+    <!-- PENGURUS -->
+    <section id="staff" class="tab hidden">
+
+      <div class="card">
+        <h2>Tambah Pengurus</h2>
+
+        <input id="staffRole" placeholder="Jabatan">
+        <input id="staffName" placeholder="Nama">
+        <input id="staffPhoto" placeholder="URL foto">
+        <input id="staffSort" type="number" placeholder="Urutan">
+
+        <button onclick="addStaff()">Tambah</button>
+      </div>
+
+      <div class="card">
+        <h2>Daftar Pengurus</h2>
+        <div id="staffList"></div>
+      </div>
+
+    </section>
+
+
+    <!-- INFORMASI -->
+    <section id="announcement" class="tab hidden">
+
+      <div class="card">
+        <h2>Tambah Informasi</h2>
+
+        <input id="annTitle" placeholder="Judul informasi">
+
+        <textarea id="annBody"
+          rows="5"
+          placeholder="Isi informasi"></textarea>
+
+        <input id="annDate" type="date">
+
+        <button onclick="addAnnouncement()">Tambah</button>
+      </div>
+
+      <div class="card">
+        <h2>Daftar Informasi</h2>
+        <div id="announcementList"></div>
+      </div>
+
+    </section>
+
+
+    <!-- AGENDA -->
+    <section id="events" class="tab hidden">
+
+      <div class="card">
+        <h2>Tambah Agenda</h2>
+
+        <input id="eventTitle" placeholder="Nama kegiatan">
+
+        <input id="eventDate" type="date">
+
+        <input id="eventTime" type="time">
+
+        <input id="eventPlace" placeholder="Tempat">
+
+        <textarea id="eventBody"
+          rows="4"
+          placeholder="Keterangan"></textarea>
+
+        <button onclick="addEvent()">Tambah Agenda</button>
+      </div>
+
+      <div class="card">
+        <h2>Daftar Agenda</h2>
+        <div id="eventList"></div>
+      </div>
+
+    </section>
+
+
+    <!-- GALERI -->
+    <section id="gallery" class="tab hidden">
+
+      <div class="card">
+        <h2>Tambah Galeri</h2>
+
+        <input id="galleryTitle" placeholder="Judul foto">
+
+        <input id="galleryUrl" placeholder="URL gambar">
+
+        <button onclick="addGallery()">Tambah Foto</button>
+      </div>
+
+      <div class="card">
+        <h2>Daftar Galeri</h2>
+        <div id="galleryList"></div>
+      </div>
+
+    </section>
+
+
+    <!-- KONTAK -->
+    <section id="contact" class="tab hidden">
+
+      <div class="card">
+        <h2>Kontak Kampung</h2>
+
+        <input id="leaderName" placeholder="Nama Ketua RT">
+
+        <input id="whatsapp" placeholder="Nomor WhatsApp">
+
+        <input id="contactEmail" type="email" placeholder="Email">
+
+        <textarea id="address"
+          rows="3"
+          placeholder="Alamat"></textarea>
+
+        <input id="mapsUrl" placeholder="Link Google Maps">
+
+        <button onclick="saveContact()">Simpan Kontak</button>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+
 <script>
-const sb=supabase.createClient(window.SUPABASE_URL,window.SUPABASE_ANON_KEY), esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
 const SUPABASE_URL =
-  "https://ecufesvndczpxtjjkznf.supabase.co";
+"https://ecufesvndczpxtjjkznf.supabase.co";
+
 const SUPABASE_KEY =
-  "sb_publishable_gZHRu-Mptte4AeOXBYQ_dQ_qinsK7Z2";
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
-function tab(id,el){document.querySelectorAll('.tab').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));el?.classList.add('active')}
-async function login(){loginMsg.textContent='Memeriksa...';const {error}=await sb.auth.signInWithPassword({email:email.value,password:password.value});if(error){loginMsg.textContent=error.message;return}await init()}
-async function logout(){await sb.auth.signOut();location.reload()}
-async function init(){const {data:{user}}=await sb.auth.getUser();if(!user)return;const {data:a}=await sb.from('admins').select('*').eq('user_id',user.id).maybeSingle();if(!a){await sb.auth.signOut();loginMsg.textContent='Akun login bukan admin.';return}login.classList.add('hidden');app.classList.remove('hidden');who.textContent='Login sebagai '+a.email;loadAll()}
-async function loadAll(){const [s,st,n,e,g,c]=await Promise.all([sb.from('site_content').select('*').eq('id',1).single(),sb.from('staff').select('*').order('sort_order'),sb.from('announcements').select('*').order('date',{ascending:false}),sb.from('events').select('*').order('date'),sb.from('gallery').select('*').order('created_at',{ascending:false}),sb.from('contact').select('*').eq('id',1).single()]);const x=s.data;if(x){gt.value=x.hero_title;gs.value=x.hero_sub;gsl.value=x.slogan;gw.value=x.welcome;gi.value=x.hero_image;kel.value=x.kelurahan;kec.value=x.kecamatan;kota.value=x.kota;prov.value=x.provinsi;p.value=x.profile;h.value=x.history}const staff=st.data||[],news=n.data||[],events=e.data||[],gallery=g.data||[],contact=c.data;si.textContent=news.length;se.textContent=events.length;sg.textContent=gallery.length;
-staffList.innerHTML=staff.map((x,i)=>`<div class=item><div class=grid><div class=field><label>Jabatan</label><input id="sr${i}" value="${esc(x.role)}"></div><div class=field><label>Nama</label><input id="sn${i}" value="${esc(x.name)}"></div></div><button class=btn onclick="updateStaff('${x.id}',${i})">Simpan</button> <button class="btn red" onclick="del('staff','${x.id}')">Hapus</button></div>`).join('');
-newsList.innerHTML=news.map((x,i)=>`<div class=item><div class=grid><div class=field><label>Judul</label><input id="nt${i}" value="${esc(x.title)}"></div><div class=field><label>Tanggal</label><input id="nd${i}" type=date value="${esc(x.date)}"></div></div><div class=field><label>Isi</label><textarea id="nb${i}">${esc(x.body)}</textarea></div><button class=btn onclick="updateNews('${x.id}',${i})">Simpan</button> <button class="btn red" onclick="del('announcements','${x.id}')">Hapus</button></div>`).join('');
-eventList.innerHTML=events.map((x,i)=>`<div class=item><div class=grid><div class=field><label>Nama</label><input id="et${i}" value="${esc(x.title)}"></div><div class=field><label>Tanggal</label><input id="ed${i}" type=date value="${esc(x.date)}"></div><div class=field><label>Jam</label><input id="etime${i}" value="${esc(x.time)}"></div><div class=field><label>Lokasi</label><input id="ep${i}" value="${esc(x.place)}"></div></div><div class=field><label>Keterangan</label><textarea id="eb${i}">${esc(x.body)}</textarea></div><button class=btn onclick="updateEvent('${x.id}',${i})">Simpan</button> <button class="btn red" onclick="del('events','${x.id}')">Hapus</button></div>`).join('');
-galleryList.innerHTML=gallery.map((x,i)=>`<div class=item><div class=field><label>Judul</label><input id="gtl${i}" value="${esc(x.title)}"></div><div class=field><label>URL Foto</label><input id="gu${i}" value="${esc(x.image_url)}"></div><button class=btn onclick="updateGallery('${x.id}',${i})">Simpan</button> <button class="btn red" onclick="del('gallery','${x.id}')">Hapus</button></div>`).join('');
-if(contact.data){cn.value=contact.data.leader_name;cw.value=contact.data.whatsapp;ce.value=contact.data.email;ca.value=contact.data.address;cm.value=contact.data.maps_url}}
-async function ok(promise){const {error}=await promise;if(error)alert(error.message);else{alert('Tersimpan');loadAll()}}
-async function saveGeneral(){await ok(sb.from('site_content').update({hero_title:gt.value,hero_sub:gs.value,slogan:gsl.value,welcome:gw.value,hero_image:gi.value}).eq('id',1))}
-async function saveProfile(){await ok(sb.from('site_content').update({kelurahan:kel.value,kecamatan:kec.value,kota:kota.value,provinsi:prov.value,profile:p.value,history:h.value}).eq('id',1))}
-async function saveContact(){await ok(sb.from('contact').update({leader_name:cn.value,whatsapp:cw.value,email:ce.value,address:ca.value,maps_url:cm.value}).eq('id',1))}
-async function addStaff(){await ok(sb.from('staff').insert({role:'Jabatan Baru',name:'[NAMA]'}))}
-async function updateStaff(id,i){await ok(sb.from('staff').update({role:document.getElementById('sr'+i).value,name:document.getElementById('sn'+i).value}).eq('id',id))}
-async function addNews(){await ok(sb.from('announcements').insert({title:'Pengumuman Baru',body:'[ISI PENGUMUMAN]',date:new Date().toISOString().slice(0,10)}))}
-async function updateNews(id,i){await ok(sb.from('announcements').update({title:nt[i].value,body:nb[i].value,date:nd[i].value}).eq('id',id))}
-async function addEvent(){await ok(sb.from('events').insert({title:'Kegiatan Baru',date:new Date().toISOString().slice(0,10),time:'[JAM]',place:'[LOKASI]',body:'[KETERANGAN]'}))}
-async function updateEvent(id,i){await ok(sb.from('events').update({title:et[i].value,date:ed[i].value,time:etime[i].value,place:ep[i].value,body:eb[i].value}).eq('id',id))}
-async function addGallery(){await ok(sb.from('gallery').insert({title:'Foto Baru',image_url:'https://'}))}
-async function updateGallery(id,i){await ok(sb.from('gallery').update({title:gtl[i].value,image_url:gu[i].value}).eq('id',id))}
-async function del(table,id){if(confirm('Hapus data ini?'))await ok(sb.from(table).delete().eq('id',id))}
-sb.auth.getSession().then(({data})=>{if(data.session)init()})
-</script></body></html>
+"sb_publishable_gZHRu-Mptte4AeOXBYQ_dQ_qinsK7Z2";
+
+const sb = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/* =========================
+   LOGIN
+========================= */
+
+async function login(){
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+  const msg =
+    document.getElementById("loginMsg");
+
+  if(!email || !password){
+    msg.innerHTML =
+      '<div class="msg">Email dan password wajib diisi.</div>';
+    return;
+  }
+
+  msg.innerHTML =
+    '<div class="msg">Sedang login...</div>';
+
+  const {data,error} =
+    await sb.auth.signInWithPassword({
+      email,
+      password
+    });
+
+  if(error){
+
+    msg.innerHTML =
+      '<div class="msg">Login gagal: ' +
+      error.message +
+      '</div>';
+
+    return;
+  }
+
+  await checkAdmin();
+}
+
+
+/* =========================
+   CEK ADMIN
+========================= */
+
+async function checkAdmin(){
+
+  const {
+    data:{user}
+  } = await sb.auth.getUser();
+
+  if(!user){
+
+    document
+      .getElementById("loginPage")
+      .classList.remove("hidden");
+
+    document
+      .getElementById("app")
+      .classList.add("hidden");
+
+    return;
+  }
+
+  const {data,isError,error} =
+    await sb.rpc("is_admin");
+
+  if(error){
+
+    alert(
+      "Fungsi is_admin bermasalah:\n" +
+      error.message
+    );
+
+    return;
+  }
+
+  if(!data){
+
+    await sb.auth.signOut();
+
+    document.getElementById("loginMsg").innerHTML =
+      '<div class="msg">Akun ini bukan admin.</div>';
+
+    return;
+  }
+
+  document
+    .getElementById("loginPage")
+    .classList.add("hidden");
+
+  document
+    .getElementById("app")
+    .classList.remove("hidden");
+
+  showTab("dashboard");
+
+  loadAll();
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logout(){
+
+  await sb.auth.signOut();
+
+  location.reload();
+}
+
+
+/* =========================
+   TAB
+========================= */
+
+function showTab(tab){
+
+  document
+    .querySelectorAll(".tab")
+    .forEach(x =>
+      x.classList.add("hidden")
+    );
+
+  document
+    .querySelectorAll("nav button")
+    .forEach(x =>
+      x.classList.remove("active")
+    );
+
+  document
+    .getElementById(tab)
+    .classList.remove("hidden");
+
+  document
+    .getElementById("btn-"+tab)
+    .classList.add("active");
+}
+
+
+/* =========================
+   LOAD ALL
+========================= */
+
+async function loadAll(){
+
+  await loadContent();
+  await loadStaff();
+  await loadAnnouncements();
+  await loadEvents();
+  await loadGallery();
+  await loadContact();
+
+  updateCounts();
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+async function loadContent(){
+
+  const {data,error} =
+    await sb
+      .from("site_content")
+      .select("*")
+      .eq("id",1)
+      .maybeSingle();
+
+  if(error){
+    console.error(error);
+    return;
+  }
+
+  if(!data) return;
+
+  [
+    "hero_title",
+    "hero_sub",
+    "slogan",
+    "welcome",
+    "hero_image",
+    "profile",
+    "history",
+    "kelurahan",
+    "kecamatan",
+    "kota",
+    "provinsi"
+  ].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.value=data[id] || "";
+  });
+}
+
+
+async function saveContent(){
+
+  const payload={};
+
+  [
+    "hero_title",
+    "hero_sub",
+    "slogan",
+    "welcome",
+    "hero_image",
+    "profile",
+    "history",
+    "kelurahan",
+    "kecamatan",
+    "kota",
+    "provinsi"
+  ].forEach(id=>{
+    payload[id]=
+      document.getElementById(id).value;
+  });
+
+  const {error} =
+    await sb
+      .from("site_content")
+      .upsert({
+        id:1,
+        ...payload
+      });
+
+  if(error)
+    alert("Gagal: "+error.message);
+  else
+    alert("Profil berhasil disimpan.");
+}
+
+
+/* =========================
+   STAFF
+========================= */
+
+async function loadStaff(){
+
+  const {data,error} =
+    await sb
+      .from("staff")
+      .select("*")
+      .order("sort_order");
+
+  if(error){
+    console.error(error);
+    return;
+  }
+
+  const box =
+    document.getElementById("staffList");
+
+  box.innerHTML="";
+
+  data.forEach(x=>{
+
+    box.innerHTML += `
+      <div class="item">
+        <b>${escapeHtml(x.name)}</b>
+        <br>
+        ${escapeHtml(x.role || "")}
+
+        <div class="item-actions">
+          <button class="danger"
+            onclick="deleteRow('staff','${x.id}')">
+            Hapus
+          </button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+
+async function addStaff(){
+
+  const payload={
+    role:document.getElementById("staffRole").value,
+    name:document.getElementById("staffName").value,
+    photo_url:document.getElementById("staffPhoto").value,
+    sort_order:Number(
+      document.getElementById("staffSort").value || 0
+    )
+  };
+
+  const {error} =
+    await sb.from("staff").insert(payload);
+
+  if(error)
+    alert(error.message);
+  else{
+
+    alert("Pengurus ditambahkan.");
+
+    document.getElementById("staffRole").value="";
+    document.getElementById("staffName").value="";
+    document.getElementById("staffPhoto").value="";
+    document.getElementById("staffSort").value="";
+
+    loadStaff();
+    updateCounts();
+  }
+}
+
+
+/* =========================
+   ANNOUNCEMENT
+========================= */
+
+async function loadAnnouncements(){
+
+  const {data,error} =
+    await sb
+      .from("announcements")
+      .select("*")
+      .order("date",{ascending:false});
+
+  if(error){
+    console.error(error);
+    return;
+  }
+
+  const box =
+    document.getElementById("announcementList");
+
+  box.innerHTML="";
+
+  data.forEach(x=>{
+
+    box.innerHTML += `
+      <div class="item">
+        <b>${escapeHtml(x.title)}</b>
+        <br>
+        <small>${x.date || ""}</small>
+        <p>${escapeHtml(x.body || "")}</p>
+
+        <button class="danger"
+          onclick="deleteRow('announcements','${x.id}')">
+          Hapus
+        </button>
+      </div>
+    `;
+  });
+}
+
+
+async function addAnnouncement(){
+
+  const payload={
+    title:document.getElementById("annTitle").value,
+    body:document.getElementById("annBody").value,
+    date:document.getElementById("annDate").value
+  };
+
+  const {error} =
+    await sb
+      .from("announcements")
+      .insert(payload);
+
+  if(error)
+    alert(error.message);
+  else{
+
+    alert("Informasi ditambahkan.");
+
+    document.getElementById("annTitle").value="";
+    document.getElementById("annBody").value="";
+    document.getElementById("annDate").value="";
+
+    loadAnnouncements();
+    updateCounts();
+  }
+}
+
+
+/* =========================
+   EVENTS
+========================= */
+
+async function loadEvents(){
+
+  const {data,error} =
+    await sb
+      .from("events")
+      .select("*")
+      .order("date",{ascending:false});
+
+  if(error){
+    console.error(error);
+    return;
+  }
+
+  const box =
+    document.getElementById("eventList");
+
+  box.innerHTML="";
+
+  data.forEach(x=>{
+
+    box.innerHTML += `
+      <div class="item">
+        <b>${escapeHtml(x.title)}</b>
+        <br>
+        ${x.date || ""} ${x.time || ""}
+        <br>
+        ${escapeHtml(x.place || "")}
+        <p>${escapeHtml(x.body || "")}</p>
+
+        <button class="danger"
+          onclick="deleteRow('events','${x.id}')">
+          Hapus
+        </button>
+      </div>
+    `;
+  });
+}
+
+
+async function addEvent(){
+
+  const payload={
+    title:document.getElementById("eventTitle").value,
+    date:document.getElementById("eventDate").value,
+    time:document.getElementById("eventTime").value,
+    place:document.getElementById("eventPlace").value,
+    body:document.getElementById("eventBody").value
+  };
+
+  const {error} =
+    await sb
+      .from("events")
+      .insert(payload);
+
+  if(error)
+    alert(error.message);
+  else{
+
+    alert("Agenda ditambahkan.");
+
+    document.getElementById("eventTitle").value="";
+    document.getElementById("eventDate").value="";
+    document.getElementById("eventTime").value="";
+    document.getElementById("eventPlace").value="";
+    document.getElementById("eventBody").value="";
+
+    loadEvents();
+    updateCounts();
+  }
+}
+
+
+/* =========================
+   GALLERY
+========================= */
+
+async function loadGallery(){
+
+  const {data,error} =
+    await sb
+      .from("gallery")
+      .select("*")
+      .order("created_at",{ascending:false});
+
+  if(error){
+    console.error(error);
+    return;
+  }
+
+  const box =
+    document.getElementById("galleryList");
+
+  box.innerHTML="";
+
+  data.forEach(x=>{
+
+    box.innerHTML += `
+      <div class="item">
+        <b>${escapeHtml(x.title || "")}</b>
+        <br>
+        <small>${escapeHtml(x.image_url || "")}</small>
+
+        <br><br>
+
+        <button class="danger"
+          onclick="deleteRow('gallery','${x.id}')">
+          Hapus
+        </button>
+      </div>
+    `;
+  });
+}
+
+
+async function addGallery(){
+
+  const payload={
+    title:document.getElementById("galleryTitle").value,
+    image_url:document.getElementById("galleryUrl").value
+  };
+
+  const {error} =
+    await sb
+      .from("gallery")
+      .insert(payload);
+
+  if(error)
+    alert(error.message);
+  else{
+
+    alert("Foto ditambahkan.");
+
+    document.getElementById("galleryTitle").value="";
+    document.getElementById("galleryUrl").value="";
+
+    loadGallery();
+    updateCounts();
+  }
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+async function loadContact(){
+
+  const {data,error} =
+    await sb
+      .from("contact")
+      .select("*")
+      .eq("id",1)
+      .maybeSingle();
+
+  if(error){
+    console.error(error);
+    return;
+  }
+
+  if(!data) return;
+
+  document.getElementById("leaderName").value =
+    data.leader_name || "";
+
+  document.getElementById("whatsapp").value =
+    data.whatsapp || "";
+
+  document.getElementById("contactEmail").value =
+    data.email || "";
+
+  document.getElementById("address").value =
+    data.address || "";
+
+  document.getElementById("mapsUrl").value =
+    data.maps_url || "";
+}
+
+
+async function saveContact(){
+
+  const payload={
+    id:1,
+    leader_name:
+      document.getElementById("leaderName").value,
+    whatsapp:
+      document.getElementById("whatsapp").value,
+    email:
+      document.getElementById("contactEmail").value,
+    address:
+      document.getElementById("address").value,
+    maps_url:
+      document.getElementById("mapsUrl").value
+  };
+
+  const {error} =
+    await sb
+      .from("contact")
+      .upsert(payload);
+
+  if(error)
+    alert(error.message);
+  else
+    alert("Kontak berhasil disimpan.");
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+async function deleteRow(table,id){
+
+  if(!confirm("Yakin ingin menghapus data ini?"))
+    return;
+
+  const {error} =
+    await sb
+      .from(table)
+      .delete()
+      .eq("id",id);
+
+  if(error)
+    alert("Gagal menghapus: "+error.message);
+  else{
+
+    alert("Data berhasil dihapus.");
+
+    loadAll();
+  }
+}
+
+
+/* =========================
+   COUNTS
+========================= */
+
+async function updateCounts(){
+
+  const tables=[
+    ["staff","countStaff"],
+    ["announcements","countAnnouncement"],
+    ["events","countEvents"],
+    ["gallery","countGallery"]
+  ];
+
+  for(const [table,id] of tables){
+
+    const {count} =
+      await sb
+        .from(table)
+        .select("*",{count:"exact",head:true});
+
+    document.getElementById(id).textContent =
+      count || 0;
+  }
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+
+/* =========================
+   AUTO CHECK SESSION
+========================= */
+
+sb.auth.onAuthStateChange(
+  async (event,session)=>{
+
+    if(session){
+      await checkAdmin();
+    }
+  }
+);
+
+checkAdmin();
+
+</script>
+
+</body>
+</html>

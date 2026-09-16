@@ -2,73 +2,116 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>Admin Kampung Bebekan Tengah</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
+:root{
+  --green:#087443;
+  --dark:#064d31;
+  --light:#eef9f1;
+  --text:#17352a;
+  --muted:#64766e;
+  --white:#fff;
+  --red:#c62828;
+  --orange:#ef8f00;
+  --border:#dfe9e3;
+}
+
 *{
   box-sizing:border-box;
 }
 
 body{
   margin:0;
-  font-family:Arial,sans-serif;
-  background:#f3f7f5;
-  color:#183027;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f7f5;
+  color:var(--text);
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
 }
 
 .hidden{
   display:none!important;
 }
 
-/* LOGIN */
+/* ================= LOGIN ================= */
+
 .login{
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
   padding:20px;
+  background:
+    linear-gradient(135deg,#064d31,#087443);
 }
 
 .login-box{
-  width:100%;
-  max-width:420px;
-  background:white;
-  padding:30px;
-  border-radius:20px;
-  box-shadow:0 10px 35px rgba(0,0,0,.10);
+  width:min(420px,100%);
+  background:#fff;
+  padding:35px;
+  border-radius:22px;
+  box-shadow:0 20px 60px #0003;
 }
 
 .login-box h1{
-  margin-top:0;
-  color:#16834a;
+  margin:0 0 8px;
+  color:var(--dark);
+}
+
+.login-box p{
+  color:var(--muted);
+}
+
+label{
+  display:block;
+  margin:15px 0 7px;
+  font-weight:bold;
 }
 
 input,
-textarea{
+textarea,
+select{
   width:100%;
-  padding:12px;
-  margin:7px 0 15px;
-  border:1px solid #dce9e1;
+  border:1px solid var(--border);
   border-radius:10px;
-  font-size:15px;
+  padding:12px 13px;
+  background:#fff;
+  color:var(--text);
   outline:none;
 }
 
 input:focus,
-textarea:focus{
-  border-color:#16834a;
+textarea:focus,
+select:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px #08744315;
+}
+
+textarea{
+  resize:vertical;
 }
 
 button{
   border:0;
-  padding:11px 16px;
   border-radius:10px;
-  background:#16834a;
-  color:white;
-  cursor:pointer;
+  padding:11px 16px;
+  background:var(--green);
+  color:#fff;
   font-weight:bold;
 }
 
@@ -76,113 +119,383 @@ button:hover{
   opacity:.9;
 }
 
-.danger{
-  background:#c62828;
+button.secondary{
+  background:#eaf2ed;
+  color:var(--dark);
+}
+
+button.danger{
+  background:var(--red);
+}
+
+button.warning{
+  background:var(--orange);
 }
 
 .msg{
-  padding:11px;
+  padding:12px;
   border-radius:10px;
   background:#fff3cd;
   color:#664d03;
-  margin-bottom:15px;
+  margin:15px 0;
+  font-size:14px;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 header{
-  background:#16834a;
-  color:white;
-  padding:18px 25px;
+  background:var(--dark);
+  color:#fff;
+  padding:16px 5%;
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:15px;
 }
 
-/* NAV */
+header b{
+  font-size:19px;
+}
+
+header small{
+  opacity:.8;
+}
+
+/* ================= NAV ================= */
+
 nav{
-  background:white;
-  padding:12px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  padding:10px 5%;
   display:flex;
-  gap:8px;
-  overflow:auto;
-  box-shadow:0 2px 10px rgba(0,0,0,.05);
+  gap:7px;
+  overflow-x:auto;
+  position:sticky;
+  top:0;
+  z-index:20;
 }
 
 nav button{
-  background:#eaf7ef;
-  color:#16834a;
   white-space:nowrap;
+  background:transparent;
+  color:var(--text);
 }
 
+nav button:hover,
 nav button.active{
-  background:#16834a;
-  color:white;
+  background:var(--green);
+  color:#fff;
 }
 
-/* MAIN */
+/* ================= MAIN ================= */
+
 main{
-  max-width:1100px;
-  margin:auto;
-  padding:25px;
+  width:min(1200px,94%);
+  margin:25px auto 60px;
+}
+
+.tab{
+  display:block;
 }
 
 .card{
-  background:white;
-  padding:20px;
+  background:#fff;
+  border:1px solid var(--border);
   border-radius:18px;
+  padding:25px;
   margin-bottom:20px;
-  box-shadow:0 8px 30px rgba(0,0,0,.06);
+  box-shadow:0 8px 25px #064d3108;
+}
+
+.card h2{
+  margin-top:0;
+  color:var(--dark);
+}
+
+.card h3{
+  color:var(--dark);
 }
 
 .grid{
   display:grid;
-  grid-template-columns:
-    repeat(auto-fit,minmax(190px,1fr));
+  grid-template-columns:repeat(4,1fr);
   gap:15px;
 }
 
 .stat{
-  background:#eaf7ef;
+  background:var(--light);
   padding:20px;
   border-radius:15px;
 }
 
 .stat b{
   display:block;
-  font-size:28px;
-  color:#16834a;
+  font-size:30px;
+  color:var(--green);
   margin-top:5px;
 }
 
-.item{
-  border:1px solid #dce9e1;
-  padding:15px;
-  border-radius:12px;
-  margin:10px 0;
+/* ================= FORM ================= */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.full{
+  grid-column:1/-1;
 }
 
 .actions{
   display:flex;
   gap:8px;
-  margin-top:10px;
+  flex-wrap:wrap;
+  margin-top:15px;
 }
 
-small{
-  opacity:.8;
+/* ================= DATA LIST ================= */
+
+.list{
+  display:grid;
+  gap:12px;
+  margin-top:20px;
 }
 
-label{
+.item{
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:17px;
+  background:#fff;
+}
+
+.item-title{
+  font-weight:bold;
+  font-size:17px;
+}
+
+.item-meta{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:5px;
+}
+
+.item-body{
+  margin-top:8px;
+  white-space:pre-wrap;
+}
+
+.empty{
+  padding:25px;
+  text-align:center;
+  background:var(--light);
+  border-radius:12px;
+  color:var(--muted);
+}
+
+/* ================= KAS ================= */
+
+.kas-summary{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.kas-box{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:22px;
+  border-top:5px solid var(--green);
+}
+
+.kas-box h3{
+  margin:0;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.kas-box strong{
+  display:block;
+  font-size:27px;
+  margin-top:8px;
+}
+
+.kas-box.saldo{
+  border-top-color:var(--dark);
+}
+
+.kas-box.saldo strong{
+  color:var(--dark);
+}
+
+.kas-box.masuk{
+  border-top-color:#16834a;
+}
+
+.kas-box.masuk strong{
+  color:#16834a;
+}
+
+.kas-box.keluar{
+  border-top-color:var(--red);
+}
+
+.kas-box.keluar strong{
+  color:var(--red);
+}
+
+.kas-form{
+  background:var(--light);
+  border-radius:17px;
+  padding:22px;
+  margin-bottom:20px;
+}
+
+.kas-table-wrap{
+  overflow-x:auto;
+}
+
+.kas-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:800px;
+}
+
+.kas-table th,
+.kas-table td{
+  padding:13px;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+}
+
+.kas-table th{
+  background:#f3f7f4;
+  color:var(--dark);
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:12px;
   font-weight:bold;
 }
+
+.badge.in{
+  background:#dff5e7;
+  color:#16733f;
+}
+
+.badge.out{
+  background:#fde1e1;
+  color:#a51f1f;
+}
+
+.amount-in{
+  color:#16834a;
+  font-weight:bold;
+}
+
+.amount-out{
+  color:var(--red);
+  font-weight:bold;
+}
+
+.kas-actions{
+  display:flex;
+  gap:5px;
+}
+
+.kas-actions button{
+  padding:7px 10px;
+  font-size:12px;
+}
+
+/* ================= TOAST ================= */
+
+#toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:999;
+  background:var(--dark);
+  color:#fff;
+  padding:14px 18px;
+  border-radius:12px;
+  box-shadow:0 10px 30px #0003;
+  display:none;
+}
+
+#toast.show{
+  display:block;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:850px){
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .kas-summary{
+    grid-template-columns:1fr;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+}
+
+@media(max-width:550px){
+
+  header{
+    padding:14px;
+  }
+
+  main{
+    width:94%;
+  }
+
+  nav{
+    padding:8px;
+  }
+
+  nav button{
+    padding:9px 11px;
+    font-size:12px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    padding:18px;
+  }
+
+  .login-box{
+    padding:25px;
+  }
+
+}
+
 </style>
 </head>
 
 <body>
 
+
 <!-- =====================================================
      LOGIN
-===================================================== -->
+====================================================== -->
 
 <div id="loginPage" class="login">
 
@@ -217,9 +530,9 @@ label{
 
     <button
       onclick="login()"
-      style="width:100%;"
+      style="width:100%;margin-top:18px;"
     >
-      LOGIN
+      🔐 LOGIN ADMIN
     </button>
 
   </div>
@@ -229,478 +542,821 @@ label{
 
 <!-- =====================================================
      ADMIN APP
-===================================================== -->
+====================================================== -->
 
 <div id="app" class="hidden">
 
-  <!-- HEADER -->
 
-  <header>
+<header>
 
-    <div>
-      <b>ADMIN KAMPUNG</b>
-      <br>
-      <small>
-        Kampung Bebekan Tengah RT 17 / RW 05
-      </small>
+  <div>
+
+    <b>ADMIN KAMPUNG</b>
+
+    <br>
+
+    <small>
+      Kampung Bebekan Tengah RT 17 / RW 05
+    </small>
+
+  </div>
+
+  <button
+    onclick="logout()"
+    class="danger"
+  >
+    Keluar
+  </button>
+
+</header>
+
+
+<!-- =====================================================
+     NAVIGATION
+====================================================== -->
+
+<nav>
+
+  <button
+    id="btn-dashboard"
+    onclick="showTab('dashboard')"
+  >
+    🏠 Dashboard
+  </button>
+
+  <button
+    id="btn-content"
+    onclick="showTab('content')"
+  >
+    📝 Profil
+  </button>
+
+  <button
+    id="btn-staff"
+    onclick="showTab('staff')"
+  >
+    👥 Pengurus
+  </button>
+
+  <button
+    id="btn-announcement"
+    onclick="showTab('announcement')"
+  >
+    📢 Informasi
+  </button>
+
+  <button
+    id="btn-events"
+    onclick="showTab('events')"
+  >
+    📅 Agenda
+  </button>
+
+  <button
+    id="btn-gallery"
+    onclick="showTab('gallery')"
+  >
+    🖼️ Galeri
+  </button>
+
+  <button
+    id="btn-kas"
+    onclick="showTab('kas')"
+  >
+    💰 KAS RT 17
+  </button>
+
+  <button
+    id="btn-contact"
+    onclick="showTab('contact')"
+  >
+    📞 Kontak
+  </button>
+
+</nav>
+
+
+<main>
+
+
+<!-- =====================================================
+     DASHBOARD
+====================================================== -->
+
+<section
+  id="dashboard"
+  class="tab"
+>
+
+  <div class="card">
+
+    <h2>Dashboard</h2>
+
+    <p>
+      Kelola seluruh informasi website
+      Kampung Bebekan Tengah RT 17 / RW 05.
+    </p>
+
+    <div class="grid">
+
+      <div class="stat">
+        Pengurus
+        <b id="countStaff">0</b>
+      </div>
+
+      <div class="stat">
+        Informasi
+        <b id="countAnnouncement">0</b>
+      </div>
+
+      <div class="stat">
+        Agenda
+        <b id="countEvents">0</b>
+      </div>
+
+      <div class="stat">
+        Galeri
+        <b id="countGallery">0</b>
+      </div>
+
     </div>
 
-    <button onclick="logout()">
-      Keluar
-    </button>
-
-  </header>
+  </div>
 
 
-  <!-- NAVIGATION -->
+  <!-- DASHBOARD KAS -->
 
-  <nav>
+  <div class="card">
 
-    <button
-      id="btn-dashboard"
-      onclick="showTab('dashboard')"
-    >
-      Dashboard
-    </button>
+    <h2>💰 Ringkasan KAS RT 17</h2>
 
-    <button
-      id="btn-content"
-      onclick="showTab('content')"
-    >
-      Profil
-    </button>
+    <div class="kas-summary">
 
-    <button
-      id="btn-staff"
-      onclick="showTab('staff')"
-    >
-      Pengurus
-    </button>
+      <div class="kas-box saldo">
 
-    <button
-      id="btn-announcement"
-      onclick="showTab('announcement')"
-    >
-      Informasi
-    </button>
+        <h3>Saldo KAS</h3>
 
-    <button
-      id="btn-events"
-      onclick="showTab('events')"
-    >
-      Agenda
-    </button>
-
-    <button
-      id="btn-gallery"
-      onclick="showTab('gallery')"
-    >
-      Galeri
-    </button>
-
-    <button
-      id="btn-contact"
-      onclick="showTab('contact')"
-    >
-      Kontak
-    </button>
-
-  </nav>
-
-
-  <!-- MAIN -->
-
-  <main>
-
-
-    <!-- =================================================
-         DASHBOARD
-    ================================================== -->
-
-    <section
-      id="dashboard"
-      class="tab"
-    >
-
-      <div class="card">
-
-        <h2>Dashboard</h2>
-
-        <p>
-          Kelola website Kampung Bebekan Tengah
-          RT 17 / RW 05.
-        </p>
-
-        <div class="grid">
-
-          <div class="stat">
-            Pengurus
-            <b id="countStaff">0</b>
-          </div>
-
-          <div class="stat">
-            Informasi
-            <b id="countAnnouncement">0</b>
-          </div>
-
-          <div class="stat">
-            Agenda
-            <b id="countEvents">0</b>
-          </div>
-
-          <div class="stat">
-            Galeri
-            <b id="countGallery">0</b>
-          </div>
-
-        </div>
+        <strong id="dashboardSaldo">
+          Rp 0
+        </strong>
 
       </div>
 
-    </section>
+      <div class="kas-box masuk">
+
+        <h3>Total Pemasukan</h3>
+
+        <strong id="dashboardMasuk">
+          Rp 0
+        </strong>
+
+      </div>
+
+      <div class="kas-box keluar">
+
+        <h3>Total Pengeluaran</h3>
+
+        <strong id="dashboardKeluar">
+          Rp 0
+        </strong>
+
+      </div>
+
+    </div>
+
+    <button onclick="showTab('kas')">
+      Kelola KAS RT 17 →
+    </button>
+
+  </div>
+
+</section>
 
 
-    <!-- =================================================
-         PROFIL
-    ================================================== -->
+<!-- =====================================================
+     PROFIL
+====================================================== -->
 
-    <section
-      id="content"
-      class="tab hidden"
-    >
+<section
+  id="content"
+  class="tab hidden"
+>
 
-      <div class="card">
+  <div class="card">
 
-        <h2>Profil Kampung</h2>
+    <h2>📝 Profil Kampung</h2>
 
-        <label>Judul Hero</label>
+    <label>Judul Hero</label>
+    <input id="hero_title">
 
-        <input id="hero_title">
+    <label>Sub Judul</label>
+    <input id="hero_sub">
 
+    <label>Slogan</label>
+    <input id="slogan">
 
-        <label>Sub Judul</label>
+    <label>Sambutan</label>
+    <textarea
+      id="welcome"
+      rows="4"
+    ></textarea>
 
-        <input id="hero_sub">
+    <label>URL Foto Hero</label>
+    <input id="hero_image">
 
+    <label>Profil Kampung</label>
+    <textarea
+      id="profile"
+      rows="6"
+    ></textarea>
 
-        <label>Slogan</label>
+    <label>Sejarah</label>
+    <textarea
+      id="history"
+      rows="6"
+    ></textarea>
 
-        <input id="slogan">
+    <div class="form-grid">
 
-
-        <label>Sambutan</label>
-
-        <textarea
-          id="welcome"
-          rows="4"
-        ></textarea>
-
-
-        <label>URL Foto Hero</label>
-
-        <input id="hero_image">
-
-
-        <label>Profil Kampung</label>
-
-        <textarea
-          id="profile"
-          rows="5"
-        ></textarea>
-
-
-        <label>Sejarah</label>
-
-        <textarea
-          id="history"
-          rows="5"
-        ></textarea>
-
-
+      <div>
         <label>Kelurahan</label>
-
         <input id="kelurahan">
-
-
-        <label>Kecamatan</label>
-
-        <input id="kecamatan">
-
-
-        <label>Kota</label>
-
-        <input id="kota">
-
-
-        <label>Provinsi</label>
-
-        <input id="provinsi">
-
-
-        <button onclick="saveContent()">
-          Simpan Profil
-        </button>
-
       </div>
 
-    </section>
+      <div>
+        <label>Kecamatan</label>
+        <input id="kecamatan">
+      </div>
+
+      <div>
+        <label>Kota</label>
+        <input id="kota">
+      </div>
+
+      <div>
+        <label>Provinsi</label>
+        <input id="provinsi">
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <button onclick="saveContent()">
+        💾 Simpan Profil
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
 
 
-    <!-- =================================================
-         PENGURUS
-    ================================================== -->
+<!-- =====================================================
+     PENGURUS
+====================================================== -->
 
-    <section
-      id="staff"
-      class="tab hidden"
-    >
+<section
+  id="staff"
+  class="tab hidden"
+>
 
-      <div class="card">
+  <div class="card">
 
-        <h2>Tambah Pengurus</h2>
+    <h2>👥 Tambah Pengurus</h2>
 
+    <div class="form-grid">
+
+      <div>
+        <label>Jabatan</label>
         <input
           id="staffRole"
-          placeholder="Jabatan"
+          placeholder="Contoh: Ketua RT"
         >
+      </div>
 
+      <div>
+        <label>Nama</label>
         <input
           id="staffName"
-          placeholder="Nama"
+          placeholder="Nama pengurus"
         >
+      </div>
 
+      <div>
+        <label>URL Foto</label>
         <input
           id="staffPhoto"
-          placeholder="URL foto"
+          placeholder="https://..."
         >
+      </div>
 
+      <div>
+        <label>Urutan</label>
         <input
           id="staffSort"
           type="number"
-          placeholder="Urutan"
+          value="0"
         >
-
-        <button onclick="addStaff()">
-          Tambah Pengurus
-        </button>
-
       </div>
 
+    </div>
 
-      <div class="card">
+    <div class="actions">
 
-        <h2>Daftar Pengurus</h2>
+      <button onclick="addStaff()">
+        + Tambah Pengurus
+      </button>
 
-        <div id="staffList"></div>
+    </div>
 
-      </div>
-
-    </section>
+  </div>
 
 
-    <!-- =================================================
-         INFORMASI
-    ================================================== -->
+  <div class="card">
 
-    <section
-      id="announcement"
-      class="tab hidden"
+    <h2>Daftar Pengurus</h2>
+
+    <div
+      id="staffList"
+      class="list"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     INFORMASI
+====================================================== -->
+
+<section
+  id="announcement"
+  class="tab hidden"
+>
+
+  <div class="card">
+
+    <h2>📢 Tambah Informasi</h2>
+
+    <label>Judul</label>
+
+    <input
+      id="announcementTitle"
+      placeholder="Judul informasi"
     >
 
-      <div class="card">
+    <label>Tanggal</label>
 
-        <h2>Tambah Informasi</h2>
-
-        <input
-          id="annTitle"
-          placeholder="Judul informasi"
-        >
-
-        <textarea
-          id="annBody"
-          rows="5"
-          placeholder="Isi informasi"
-        ></textarea>
-
-        <input
-          id="annDate"
-          type="date"
-        >
-
-        <button onclick="addAnnouncement()">
-          Tambah Informasi
-        </button>
-
-      </div>
-
-
-      <div class="card">
-
-        <h2>Daftar Informasi</h2>
-
-        <div id="announcementList"></div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =================================================
-         AGENDA
-    ================================================== -->
-
-    <section
-      id="events"
-      class="tab hidden"
+    <input
+      id="announcementDate"
+      type="date"
     >
 
-      <div class="card">
+    <label>Isi Informasi</label>
 
-        <h2>Tambah Agenda</h2>
+    <textarea
+      id="announcementBody"
+      rows="6"
+      placeholder="Isi informasi..."
+    ></textarea>
+
+    <div class="actions">
+
+      <button onclick="addAnnouncement()">
+        + Tambah Informasi
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>Daftar Informasi</h2>
+
+    <div
+      id="announcementList"
+      class="list"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     AGENDA
+====================================================== -->
+
+<section
+  id="events"
+  class="tab hidden"
+>
+
+  <div class="card">
+
+    <h2>📅 Tambah Agenda</h2>
+
+    <div class="form-grid">
+
+      <div>
+        <label>Nama Kegiatan</label>
 
         <input
           id="eventTitle"
           placeholder="Nama kegiatan"
         >
+      </div>
+
+      <div>
+        <label>Tanggal</label>
 
         <input
           id="eventDate"
           type="date"
         >
+      </div>
+
+      <div>
+        <label>Waktu</label>
 
         <input
           id="eventTime"
           type="time"
         >
+      </div>
+
+      <div>
+        <label>Tempat</label>
 
         <input
           id="eventPlace"
-          placeholder="Tempat"
+          placeholder="Tempat kegiatan"
         >
+      </div>
+
+      <div class="full">
+
+        <label>Keterangan</label>
 
         <textarea
           id="eventBody"
-          rows="4"
-          placeholder="Keterangan"
+          rows="5"
         ></textarea>
 
-        <button onclick="addEvent()">
-          Tambah Agenda
-        </button>
-
       </div>
 
+    </div>
 
-      <div class="card">
+    <div class="actions">
 
-        <h2>Daftar Agenda</h2>
+      <button onclick="addEvent()">
+        + Tambah Agenda
+      </button>
 
-        <div id="eventList"></div>
+    </div>
 
-      </div>
-
-    </section>
+  </div>
 
 
-    <!-- =================================================
-         GALERI
-    ================================================== -->
+  <div class="card">
 
-    <section
-      id="gallery"
-      class="tab hidden"
+    <h2>Daftar Agenda</h2>
+
+    <div
+      id="eventList"
+      class="list"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     GALERI
+====================================================== -->
+
+<section
+  id="gallery"
+  class="tab hidden"
+>
+
+  <div class="card">
+
+    <h2>🖼️ Tambah Galeri</h2>
+
+    <label>Judul Foto</label>
+
+    <input
+      id="galleryTitle"
+      placeholder="Contoh: Kerja Bakti"
     >
 
-      <div class="card">
+    <label>URL Gambar</label>
 
-        <h2>Tambah Galeri</h2>
-
-        <input
-          id="galleryTitle"
-          placeholder="Judul foto"
-        >
-
-        <input
-          id="galleryUrl"
-          placeholder="URL gambar"
-        >
-
-        <button onclick="addGallery()">
-          Tambah Foto
-        </button>
-
-      </div>
-
-
-      <div class="card">
-
-        <h2>Daftar Galeri</h2>
-
-        <div id="galleryList"></div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =================================================
-         KONTAK
-    ================================================== -->
-
-    <section
-      id="contact"
-      class="tab hidden"
+    <input
+      id="galleryImage"
+      placeholder="https://..."
     >
 
-      <div class="card">
+    <div class="actions">
 
-        <h2>Kontak Kampung</h2>
+      <button onclick="addGallery()">
+        + Tambah Foto
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>Daftar Galeri</h2>
+
+    <div
+      id="galleryList"
+      class="list"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     KAS RT 17
+====================================================== -->
+
+<section
+  id="kas"
+  class="tab hidden"
+>
+
+
+  <!-- SUMMARY -->
+
+  <div class="kas-summary">
+
+    <div class="kas-box saldo">
+
+      <h3>💰 Saldo KAS</h3>
+
+      <strong id="kasSaldo">
+        Rp 0
+      </strong>
+
+    </div>
+
+
+    <div class="kas-box masuk">
+
+      <h3>📥 Total Pemasukan</h3>
+
+      <strong id="kasMasuk">
+        Rp 0
+      </strong>
+
+    </div>
+
+
+    <div class="kas-box keluar">
+
+      <h3>📤 Total Pengeluaran</h3>
+
+      <strong id="kasKeluar">
+        Rp 0
+      </strong>
+
+    </div>
+
+  </div>
+
+
+  <!-- FORM -->
+
+  <div class="card kas-form">
+
+    <h2 id="kasFormTitle">
+      💰 Tambah Transaksi KAS
+    </h2>
+
+    <input
+      id="kasId"
+      type="hidden"
+    >
+
+    <div class="form-grid">
+
+      <div>
+
+        <label>Tanggal</label>
 
         <input
-          id="leaderName"
-          placeholder="Nama Ketua RT"
+          id="kasTanggal"
+          type="date"
         >
 
-        <input
-          id="whatsapp"
-          placeholder="Nomor WhatsApp"
-        >
+      </div>
+
+
+      <div>
+
+        <label>Jenis Transaksi</label>
+
+        <select id="kasJenis">
+
+          <option value="pemasukan">
+            📥 Pemasukan
+          </option>
+
+          <option value="pengeluaran">
+            📤 Pengeluaran
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label>Keterangan</label>
 
         <input
-          id="contactEmail"
-          type="email"
-          placeholder="Email"
+          id="kasKeterangan"
+          placeholder="Contoh: Iuran warga"
         >
+
+      </div>
+
+
+      <div>
+
+        <label>Nominal</label>
+
+        <input
+          id="kasNominal"
+          type="number"
+          min="1"
+          placeholder="50000"
+        >
+
+      </div>
+
+
+      <div class="full">
+
+        <label>Catatan</label>
 
         <textarea
-          id="address"
+          id="kasCatatan"
           rows="3"
-          placeholder="Alamat"
+          placeholder="Catatan tambahan (opsional)"
         ></textarea>
-
-        <input
-          id="mapsUrl"
-          placeholder="Link Google Maps"
-        >
-
-        <button onclick="saveContact()">
-          Simpan Kontak
-        </button>
 
       </div>
 
-    </section>
+    </div>
 
-  </main>
+
+    <div class="actions">
+
+      <button
+        id="kasSaveButton"
+        onclick="saveKas()"
+      >
+        💾 Simpan Transaksi
+      </button>
+
+      <button
+        class="secondary"
+        onclick="resetKasForm()"
+      >
+        Batal / Reset
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- TABLE -->
+
+  <div class="card">
+
+    <h2>📋 Riwayat KAS RT 17</h2>
+
+    <p style="color:var(--muted)">
+      Semua transaksi di bawah ini dapat diedit atau dihapus
+      oleh admin.
+    </p>
+
+
+    <div class="kas-table-wrap">
+
+      <table class="kas-table">
+
+        <thead>
+
+          <tr>
+
+            <th>Tanggal</th>
+
+            <th>Keterangan</th>
+
+            <th>Jenis</th>
+
+            <th>Nominal</th>
+
+            <th>Catatan</th>
+
+            <th>Aksi</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="kasTableBody">
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     KONTAK
+====================================================== -->
+
+<section
+  id="contact"
+  class="tab hidden"
+>
+
+  <div class="card">
+
+    <h2>📞 Kontak Pengurus</h2>
+
+    <label>Nama Ketua RT</label>
+
+    <input id="leaderName">
+
+    <label>WhatsApp</label>
+
+    <input id="whatsapp">
+
+    <label>Email</label>
+
+    <input id="contactEmail">
+
+    <label>Alamat</label>
+
+    <textarea
+      id="address"
+      rows="4"
+    ></textarea>
+
+    <label>Link Google Maps</label>
+
+    <input id="mapsUrl">
+
+    <div class="actions">
+
+      <button onclick="saveContact()">
+        💾 Simpan Kontak
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+</main>
 
 </div>
+
+
+<div id="toast"></div>
 
 
 <script>
 
 /* =====================================================
    SUPABASE CONFIG
-===================================================== */
+====================================================== */
 
 const SUPABASE_URL =
 "https://ecufesvndczpxtjjkznf.supabase.co";
@@ -717,23 +1373,16 @@ window.supabase.createClient(
 
 /* =====================================================
    HELPER
-===================================================== */
+====================================================== */
 
 function value(id){
 
-  return document
-    .getElementById(id)
-    .value
-    .trim();
+  const el =
+    document.getElementById(id);
 
-}
-
-
-function clear(id){
-
-  document
-    .getElementById(id)
-    .value = "";
+  return el
+    ? el.value.trim()
+    : "";
 
 }
 
@@ -750,9 +1399,62 @@ function escapeHtml(value){
 }
 
 
+function rupiah(value){
+
+  return new Intl.NumberFormat(
+    "id-ID",
+    {
+      style:"currency",
+      currency:"IDR",
+      maximumFractionDigits:0
+    }
+  ).format(Number(value || 0));
+
+}
+
+
+function today(){
+
+  const d =
+    new Date();
+
+  const month =
+    String(d.getMonth()+1)
+      .padStart(2,"0");
+
+  const day =
+    String(d.getDate())
+      .padStart(2,"0");
+
+  return `${d.getFullYear()}-${month}-${day}`;
+
+}
+
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    message;
+
+  toast.classList.add("show");
+
+  setTimeout(
+    () => toast.classList.remove("show"),
+    2500
+  );
+
+}
+
+
 function loginMessage(text){
 
-  document.getElementById("loginMsg").innerHTML =
+  document.getElementById(
+    "loginMsg"
+  ).innerHTML =
+
     '<div class="msg">' +
     escapeHtml(text) +
     '</div>';
@@ -762,7 +1464,7 @@ function loginMessage(text){
 
 /* =====================================================
    LOGIN
-===================================================== */
+====================================================== */
 
 async function login(){
 
@@ -770,7 +1472,9 @@ async function login(){
     value("email");
 
   const password =
-    document.getElementById("password").value;
+    document.getElementById(
+      "password"
+    ).value;
 
 
   if(!email || !password){
@@ -780,6 +1484,7 @@ async function login(){
     );
 
     return;
+
   }
 
 
@@ -788,7 +1493,7 @@ async function login(){
   );
 
 
-  const { error } =
+  const {error} =
     await sb.auth.signInWithPassword({
 
       email:email,
@@ -806,6 +1511,7 @@ async function login(){
     );
 
     return;
+
   }
 
 
@@ -816,7 +1522,7 @@ async function login(){
 
 /* =====================================================
    CHECK ADMIN
-===================================================== */
+====================================================== */
 
 async function checkAdmin(){
 
@@ -833,6 +1539,7 @@ async function checkAdmin(){
     showLogin();
 
     return;
+
   }
 
 
@@ -840,19 +1547,22 @@ async function checkAdmin(){
     data,
     error
   } =
-    await sb.rpc("is_admin");
+    await sb.rpc(
+      "is_admin"
+    );
 
 
   if(error){
 
     loginMessage(
-      "Fungsi is_admin belum tersedia: " +
+      "Gagal mengecek admin: " +
       error.message
     );
 
     await sb.auth.signOut();
 
     return;
+
   }
 
 
@@ -865,6 +1575,7 @@ async function checkAdmin(){
     );
 
     return;
+
   }
 
 
@@ -880,21 +1591,20 @@ async function checkAdmin(){
 
   showTab("dashboard");
 
-  loadAll();
+  await loadAll();
 
 }
 
 
 /* =====================================================
    SHOW LOGIN
-===================================================== */
+====================================================== */
 
 function showLogin(){
 
   document
     .getElementById("loginPage")
     .classList.remove("hidden");
-
 
   document
     .getElementById("app")
@@ -905,7 +1615,7 @@ function showLogin(){
 
 /* =====================================================
    LOGOUT
-===================================================== */
+====================================================== */
 
 async function logout(){
 
@@ -918,7 +1628,7 @@ async function logout(){
 
 /* =====================================================
    TAB
-===================================================== */
+====================================================== */
 
 function showTab(tab){
 
@@ -938,21 +1648,33 @@ function showTab(tab){
     );
 
 
-  document
-    .getElementById(tab)
-    .classList.remove("hidden");
+  const section =
+    document.getElementById(tab);
+
+  if(section){
+
+    section.classList.remove("hidden");
+
+  }
 
 
-  document
-    .getElementById("btn-"+tab)
-    .classList.add("active");
+  const button =
+    document.getElementById(
+      "btn-"+tab
+    );
+
+  if(button){
+
+    button.classList.add("active");
+
+  }
 
 }
 
 
 /* =====================================================
    LOAD ALL
-===================================================== */
+====================================================== */
 
 async function loadAll(){
 
@@ -968,14 +1690,16 @@ async function loadAll(){
 
   await loadContact();
 
+  await loadKas();
+
   await updateCounts();
 
 }
 
 
 /* =====================================================
-   CONTENT
-===================================================== */
+   PROFIL
+====================================================== */
 
 async function loadContent(){
 
@@ -992,15 +1716,20 @@ async function loadContent(){
 
   if(error){
 
-    console.error(error);
+    console.error(
+      "Content:",
+      error
+    );
 
     return;
+
   }
 
 
   if(!data){
 
     return;
+
   }
 
 
@@ -1021,24 +1750,24 @@ async function loadContent(){
   ];
 
 
-  fields.forEach(
-    id => {
+  fields.forEach(id => {
 
-      document
-        .getElementById(id)
-        .value =
+    const el =
+      document.getElementById(id);
+
+    if(el){
+
+      el.value =
         data[id] || "";
 
     }
-  );
+
+  });
 
 }
 
 
 async function saveContent(){
-
-  const payload = {};
-
 
   const fields = [
 
@@ -1057,14 +1786,15 @@ async function saveContent(){
   ];
 
 
-  fields.forEach(
-    id => {
+  const payload = {};
 
-      payload[id] =
-        value(id);
 
-    }
-  );
+  fields.forEach(id => {
+
+    payload[id] =
+      value(id);
+
+  });
 
 
   const {
@@ -1084,24 +1814,25 @@ async function saveContent(){
   if(error){
 
     alert(
-      "Gagal: " +
+      "Gagal menyimpan profil:\n" +
       error.message
     );
 
-  }else{
-
-    alert(
-      "Profil berhasil disimpan."
-    );
+    return;
 
   }
+
+
+  showToast(
+    "Profil berhasil disimpan."
+  );
 
 }
 
 
 /* =====================================================
    STAFF
-===================================================== */
+====================================================== */
 
 async function loadStaff(){
 
@@ -1120,58 +1851,89 @@ async function loadStaff(){
     console.error(error);
 
     return;
+
   }
 
 
   const box =
-    document.getElementById("staffList");
+    document.getElementById(
+      "staffList"
+    );
 
 
-  box.innerHTML = "";
+  if(!data || data.length===0){
+
+    box.innerHTML =
+      '<div class="empty">Belum ada pengurus.</div>';
+
+    return;
+
+  }
 
 
-  data.forEach(
-    item => {
+  box.innerHTML =
+    data.map(item => `
 
-      box.innerHTML += `
+      <div class="item">
 
-        <div class="item">
+        <div class="item-title">
+          ${escapeHtml(item.name)}
+        </div>
 
-          <b>
-            ${escapeHtml(item.name)}
-          </b>
-
-          <br>
-
+        <div class="item-meta">
           ${escapeHtml(item.role || "")}
+        </div>
 
-          <div class="actions">
-
-            <button
-              class="danger"
-              onclick="
-                deleteRow(
-                  'staff',
-                  '${item.id}'
-                )
-              "
+        ${
+          item.photo_url
+          ?
+          `<div style="margin-top:10px">
+            <img
+              src="${escapeHtml(item.photo_url)}"
+              style="width:100px;height:100px;object-fit:cover;border-radius:12px"
             >
-              Hapus
-            </button>
+          </div>`
+          :
+          ""
+        }
 
-          </div>
+        <div class="actions">
+
+          <button
+            class="danger"
+            onclick="deleteRow('staff','${item.id}')"
+          >
+            Hapus
+          </button>
 
         </div>
 
-      `;
+      </div>
 
-    }
-  );
+    `).join("");
 
 }
 
 
 async function addStaff(){
+
+  const role =
+    value("staffRole");
+
+  const name =
+    value("staffName");
+
+
+  if(!role || !name){
+
+    alert(
+      "Jabatan dan nama wajib diisi."
+    );
+
+    return;
+
+  }
+
 
   const {
     error
@@ -1180,11 +1942,12 @@ async function addStaff(){
       .from("staff")
       .insert({
 
-        role:value("staffRole"),
+        role:role,
 
-        name:value("staffName"),
+        name:name,
 
-        photo_url:value("staffPhoto"),
+        photo_url:
+          value("staffPhoto"),
 
         sort_order:
           Number(
@@ -1197,25 +1960,35 @@ async function addStaff(){
   if(error){
 
     alert(
-      "Gagal: " +
+      "Gagal:\n" +
       error.message
     );
 
     return;
+
   }
 
 
-  alert(
+  document.getElementById(
+    "staffRole"
+  ).value="";
+
+  document.getElementById(
+    "staffName"
+  ).value="";
+
+  document.getElementById(
+    "staffPhoto"
+  ).value="";
+
+  document.getElementById(
+    "staffSort"
+  ).value="0";
+
+
+  showToast(
     "Pengurus berhasil ditambahkan."
   );
-
-
-  [
-    "staffRole",
-    "staffName",
-    "staffPhoto",
-    "staffSort"
-  ].forEach(clear);
 
 
   await loadStaff();
@@ -1226,8 +1999,8 @@ async function addStaff(){
 
 
 /* =====================================================
-   ANNOUNCEMENT
-===================================================== */
+   INFORMASI
+====================================================== */
 
 async function loadAnnouncements(){
 
@@ -1251,6 +2024,7 @@ async function loadAnnouncements(){
     console.error(error);
 
     return;
+
   }
 
 
@@ -1260,53 +2034,74 @@ async function loadAnnouncements(){
     );
 
 
-  box.innerHTML = "";
+  if(!data || data.length===0){
+
+    box.innerHTML =
+      '<div class="empty">Belum ada informasi.</div>';
+
+    return;
+
+  }
 
 
-  data.forEach(
-    item => {
+  box.innerHTML =
+    data.map(item => `
 
-      box.innerHTML += `
+      <div class="item">
 
-        <div class="item">
+        <div class="item-title">
+          ${escapeHtml(item.title)}
+        </div>
 
-          <b>
-            ${escapeHtml(item.title)}
-          </b>
+        <div class="item-meta">
+          📅 ${escapeHtml(item.date || "")}
+        </div>
 
-          <br>
+        <div class="item-body">
+          ${escapeHtml(item.body || "")}
+        </div>
 
-          <small>
-            ${escapeHtml(item.date || "")}
-          </small>
-
-          <p>
-            ${escapeHtml(item.body || "")}
-          </p>
+        <div class="actions">
 
           <button
             class="danger"
-            onclick="
-              deleteRow(
-                'announcements',
-                '${item.id}'
-              )
-            "
+            onclick="deleteRow('announcements','${item.id}')"
           >
             Hapus
           </button>
 
         </div>
 
-      `;
+      </div>
 
-    }
-  );
+    `).join("");
 
 }
 
 
 async function addAnnouncement(){
+
+  const title =
+    value("announcementTitle");
+
+  const body =
+    value("announcementBody");
+
+  const date =
+    value("announcementDate") ||
+    today();
+
+
+  if(!title || !body){
+
+    alert(
+      "Judul dan isi informasi wajib diisi."
+    );
+
+    return;
+
+  }
+
 
   const {
     error
@@ -1315,11 +2110,11 @@ async function addAnnouncement(){
       .from("announcements")
       .insert({
 
-        title:value("annTitle"),
+        title:title,
 
-        body:value("annBody"),
+        body:body,
 
-        date:value("annDate")
+        date:date
 
       });
 
@@ -1327,24 +2122,27 @@ async function addAnnouncement(){
   if(error){
 
     alert(
-      "Gagal: " +
+      "Gagal:\n" +
       error.message
     );
 
     return;
+
   }
 
 
-  alert(
+  document.getElementById(
+    "announcementTitle"
+  ).value="";
+
+  document.getElementById(
+    "announcementBody"
+  ).value="";
+
+
+  showToast(
     "Informasi berhasil ditambahkan."
   );
-
-
-  [
-    "annTitle",
-    "annBody",
-    "annDate"
-  ].forEach(clear);
 
 
   await loadAnnouncements();
@@ -1356,7 +2154,7 @@ async function addAnnouncement(){
 
 /* =====================================================
    EVENTS
-===================================================== */
+====================================================== */
 
 async function loadEvents(){
 
@@ -1367,12 +2165,7 @@ async function loadEvents(){
     await sb
       .from("events")
       .select("*")
-      .order(
-        "date",
-        {
-          ascending:false
-        }
-      );
+      .order("date");
 
 
   if(error){
@@ -1380,6 +2173,7 @@ async function loadEvents(){
     console.error(error);
 
     return;
+
   }
 
 
@@ -1389,57 +2183,76 @@ async function loadEvents(){
     );
 
 
-  box.innerHTML = "";
+  if(!data || data.length===0){
+
+    box.innerHTML =
+      '<div class="empty">Belum ada agenda.</div>';
+
+    return;
+
+  }
 
 
-  data.forEach(
-    item => {
+  box.innerHTML =
+    data.map(item => `
 
-      box.innerHTML += `
+      <div class="item">
 
-        <div class="item">
+        <div class="item-title">
+          ${escapeHtml(item.title)}
+        </div>
 
-          <b>
-            ${escapeHtml(item.title)}
-          </b>
+        <div class="item-meta">
 
-          <br>
+          📅 ${escapeHtml(item.date || "")}
 
-          ${escapeHtml(item.date || "")}
+          &nbsp;
 
-          ${escapeHtml(item.time || "")}
+          🕒 ${escapeHtml(item.time || "")}
 
-          <br>
+          &nbsp;
 
-          ${escapeHtml(item.place || "")}
+          📍 ${escapeHtml(item.place || "")}
 
-          <p>
-            ${escapeHtml(item.body || "")}
-          </p>
+        </div>
+
+        <div class="item-body">
+          ${escapeHtml(item.body || "")}
+        </div>
+
+        <div class="actions">
 
           <button
             class="danger"
-            onclick="
-              deleteRow(
-                'events',
-                '${item.id}'
-              )
-            "
+            onclick="deleteRow('events','${item.id}')"
           >
             Hapus
           </button>
 
         </div>
 
-      `;
+      </div>
 
-    }
-  );
+    `).join("");
 
 }
 
 
 async function addEvent(){
+
+  const title =
+    value("eventTitle");
+
+  if(!title){
+
+    alert(
+      "Nama kegiatan wajib diisi."
+    );
+
+    return;
+
+  }
+
 
   const {
     error
@@ -1448,15 +2261,20 @@ async function addEvent(){
       .from("events")
       .insert({
 
-        title:value("eventTitle"),
+        title:title,
 
-        date:value("eventDate"),
+        date:
+          value("eventDate") ||
+          today(),
 
-        time:value("eventTime"),
+        time:
+          value("eventTime"),
 
-        place:value("eventPlace"),
+        place:
+          value("eventPlace"),
 
-        body:value("eventBody")
+        body:
+          value("eventBody")
 
       });
 
@@ -1464,26 +2282,35 @@ async function addEvent(){
   if(error){
 
     alert(
-      "Gagal: " +
+      "Gagal:\n" +
       error.message
     );
 
     return;
+
   }
 
 
-  alert(
+  document.getElementById(
+    "eventTitle"
+  ).value="";
+
+  document.getElementById(
+    "eventTime"
+  ).value="";
+
+  document.getElementById(
+    "eventPlace"
+  ).value="";
+
+  document.getElementById(
+    "eventBody"
+  ).value="";
+
+
+  showToast(
     "Agenda berhasil ditambahkan."
   );
-
-
-  [
-    "eventTitle",
-    "eventDate",
-    "eventTime",
-    "eventPlace",
-    "eventBody"
-  ].forEach(clear);
 
 
   await loadEvents();
@@ -1495,7 +2322,7 @@ async function addEvent(){
 
 /* =====================================================
    GALLERY
-===================================================== */
+====================================================== */
 
 async function loadGallery(){
 
@@ -1519,6 +2346,7 @@ async function loadGallery(){
     console.error(error);
 
     return;
+
   }
 
 
@@ -1528,51 +2356,71 @@ async function loadGallery(){
     );
 
 
-  box.innerHTML = "";
+  if(!data || data.length===0){
+
+    box.innerHTML =
+      '<div class="empty">Belum ada foto.</div>';
+
+    return;
+
+  }
 
 
-  data.forEach(
-    item => {
+  box.innerHTML =
+    data.map(item => `
 
-      box.innerHTML += `
+      <div class="item">
 
-        <div class="item">
+        <div class="item-title">
+          ${escapeHtml(item.title)}
+        </div>
 
-          <b>
-            ${escapeHtml(item.title || "")}
-          </b>
+        <div style="margin-top:12px">
 
-          <br>
+          <img
+            src="${escapeHtml(item.image_url)}"
+            style="width:180px;height:120px;object-fit:cover;border-radius:12px"
+          >
 
-          <small>
-            ${escapeHtml(item.image_url || "")}
-          </small>
+        </div>
 
-          <br><br>
+        <div class="actions">
 
           <button
             class="danger"
-            onclick="
-              deleteRow(
-                'gallery',
-                '${item.id}'
-              )
-            "
+            onclick="deleteRow('gallery','${item.id}')"
           >
             Hapus
           </button>
 
         </div>
 
-      `;
+      </div>
 
-    }
-  );
+    `).join("");
 
 }
 
 
 async function addGallery(){
+
+  const title =
+    value("galleryTitle");
+
+  const image =
+    value("galleryImage");
+
+
+  if(!title || !image){
+
+    alert(
+      "Judul dan URL gambar wajib diisi."
+    );
+
+    return;
+
+  }
+
 
   const {
     error
@@ -1581,9 +2429,9 @@ async function addGallery(){
       .from("gallery")
       .insert({
 
-        title:value("galleryTitle"),
+        title:title,
 
-        image_url:value("galleryUrl")
+        image_url:image
 
       });
 
@@ -1591,23 +2439,27 @@ async function addGallery(){
   if(error){
 
     alert(
-      "Gagal: " +
+      "Gagal:\n" +
       error.message
     );
 
     return;
+
   }
 
 
-  alert(
+  document.getElementById(
+    "galleryTitle"
+  ).value="";
+
+  document.getElementById(
+    "galleryImage"
+  ).value="";
+
+
+  showToast(
     "Foto berhasil ditambahkan."
   );
-
-
-  [
-    "galleryTitle",
-    "galleryUrl"
-  ].forEach(clear);
 
 
   await loadGallery();
@@ -1619,7 +2471,7 @@ async function addGallery(){
 
 /* =====================================================
    CONTACT
-===================================================== */
+====================================================== */
 
 async function loadContact(){
 
@@ -1639,42 +2491,44 @@ async function loadContact(){
     console.error(error);
 
     return;
+
   }
 
 
   if(!data){
 
     return;
+
   }
 
 
-  document
-    .getElementById("leaderName")
-    .value =
+  document.getElementById(
+    "leaderName"
+  ).value =
     data.leader_name || "";
 
 
-  document
-    .getElementById("whatsapp")
-    .value =
+  document.getElementById(
+    "whatsapp"
+  ).value =
     data.whatsapp || "";
 
 
-  document
-    .getElementById("contactEmail")
-    .value =
+  document.getElementById(
+    "contactEmail"
+  ).value =
     data.email || "";
 
 
-  document
-    .getElementById("address")
-    .value =
+  document.getElementById(
+    "address"
+  ).value =
     data.address || "";
 
 
-  document
-    .getElementById("mapsUrl")
-    .value =
+  document.getElementById(
+    "mapsUrl"
+  ).value =
     data.maps_url || "";
 
 }
@@ -1712,37 +2566,641 @@ async function saveContact(){
   if(error){
 
     alert(
-      "Gagal: " +
+      "Gagal:\n" +
       error.message
     );
 
-  }else{
-
-    alert(
-      "Kontak berhasil disimpan."
-    );
+    return;
 
   }
+
+
+  showToast(
+    "Kontak berhasil disimpan."
+  );
 
 }
 
 
 /* =====================================================
-   DELETE
-===================================================== */
+   KAS RT 17
+====================================================== */
+
+async function loadKas(){
+
+  const {
+    data,
+    error
+  } =
+    await sb
+      .from("kas_rt17")
+      .select("*")
+      .order(
+        "tanggal",
+        {
+          ascending:false
+        }
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+  if(error){
+
+    console.error(
+      "KAS ERROR:",
+      error
+    );
+
+
+    document.getElementById(
+      "kasTableBody"
+    ).innerHTML = `
+
+      <tr>
+
+        <td colspan="6">
+
+          <div class="empty">
+
+            Gagal memuat KAS.
+
+            <br>
+
+            <small>
+              ${escapeHtml(error.message)}
+            </small>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+    `;
+
+    return;
+
+  }
+
+
+  const kas =
+    data || [];
+
+
+  let masuk = 0;
+
+  let keluar = 0;
+
+
+  kas.forEach(item => {
+
+    const nominal =
+      Number(item.nominal || 0);
+
+
+    if(item.jenis === "pemasukan"){
+
+      masuk += nominal;
+
+    }else{
+
+      keluar += nominal;
+
+    }
+
+  });
+
+
+  const saldo =
+    masuk - keluar;
+
+
+  /* SUMMARY */
+
+  document.getElementById(
+    "kasSaldo"
+  ).textContent =
+    rupiah(saldo);
+
+
+  document.getElementById(
+    "kasMasuk"
+  ).textContent =
+    rupiah(masuk);
+
+
+  document.getElementById(
+    "kasKeluar"
+  ).textContent =
+    rupiah(keluar);
+
+
+  /* DASHBOARD */
+
+  document.getElementById(
+    "dashboardSaldo"
+  ).textContent =
+    rupiah(saldo);
+
+
+  document.getElementById(
+    "dashboardMasuk"
+  ).textContent =
+    rupiah(masuk);
+
+
+  document.getElementById(
+    "dashboardKeluar"
+  ).textContent =
+    rupiah(keluar);
+
+
+  /* TABLE */
+
+  const tbody =
+    document.getElementById(
+      "kasTableBody"
+    );
+
+
+  if(kas.length === 0){
+
+    tbody.innerHTML = `
+
+      <tr>
+
+        <td colspan="6">
+
+          <div class="empty">
+            Belum ada transaksi KAS RT 17.
+          </div>
+
+        </td>
+
+      </tr>
+
+    `;
+
+    return;
+
+  }
+
+
+  tbody.innerHTML =
+
+    kas.map(item => {
+
+      const isIn =
+        item.jenis === "pemasukan";
+
+
+      return `
+
+        <tr>
+
+          <td>
+            ${escapeHtml(
+              formatDate(item.tanggal)
+            )}
+          </td>
+
+
+          <td>
+
+            <b>
+              ${escapeHtml(
+                item.keterangan
+              )}
+            </b>
+
+          </td>
+
+
+          <td>
+
+            <span class="badge ${
+              isIn ? "in" : "out"
+            }">
+
+              ${
+                isIn
+                ? "📥 Pemasukan"
+                : "📤 Pengeluaran"
+              }
+
+            </span>
+
+          </td>
+
+
+          <td class="${
+            isIn
+            ? "amount-in"
+            : "amount-out"
+          }">
+
+            ${
+              isIn
+              ? "+"
+              : "-"
+            }
+
+            ${rupiah(item.nominal)}
+
+          </td>
+
+
+          <td>
+
+            ${
+              escapeHtml(
+                item.catatan || "-"
+              )
+            }
+
+          </td>
+
+
+          <td>
+
+            <div class="kas-actions">
+
+              <button
+                class="warning"
+                onclick="editKas('${item.id}')"
+              >
+                ✏️ Edit
+              </button>
+
+
+              <button
+                class="danger"
+                onclick="deleteKas('${item.id}')"
+              >
+                🗑️ Hapus
+              </button>
+
+            </div>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+====================================================== */
+
+function formatDate(date){
+
+  if(!date){
+
+    return "-";
+
+  }
+
+
+  const d =
+    new Date(
+      date + "T00:00:00"
+    );
+
+
+  return d.toLocaleDateString(
+    "id-ID",
+    {
+      day:"2-digit",
+      month:"2-digit",
+      year:"numeric"
+    }
+  );
+
+}
+
+
+/* =====================================================
+   SAVE / UPDATE KAS
+====================================================== */
+
+async function saveKas(){
+
+  const id =
+    value("kasId");
+
+  const tanggal =
+    value("kasTanggal");
+
+  const jenis =
+    value("kasJenis");
+
+  const keterangan =
+    value("kasKeterangan");
+
+  const nominal =
+    Number(
+      value("kasNominal")
+    );
+
+  const catatan =
+    value("kasCatatan");
+
+
+  if(
+    !tanggal ||
+    !jenis ||
+    !keterangan ||
+    !nominal ||
+    nominal <= 0
+  ){
+
+    alert(
+      "Tanggal, jenis, keterangan, dan nominal wajib diisi."
+    );
+
+    return;
+
+  }
+
+
+  const payload = {
+
+    tanggal: tanggal,
+
+    keterangan: keterangan,
+
+    jenis: jenis,
+
+    nominal: nominal,
+
+    catatan: catatan || null
+
+  };
+
+
+  let result;
+
+
+  if(id){
+
+    result =
+      await sb
+        .from("kas_rt17")
+        .update(payload)
+        .eq("id",id);
+
+  }else{
+
+    result =
+      await sb
+        .from("kas_rt17")
+        .insert(payload);
+
+  }
+
+
+  if(result.error){
+
+    alert(
+      "Gagal menyimpan KAS:\n" +
+      result.error.message
+    );
+
+    return;
+
+  }
+
+
+  showToast(
+    id
+    ? "Transaksi KAS berhasil diperbarui."
+    : "Transaksi KAS berhasil ditambahkan."
+  );
+
+
+  resetKasForm();
+
+  await loadKas();
+
+}
+
+
+/* =====================================================
+   EDIT KAS
+====================================================== */
+
+async function editKas(id){
+
+  const {
+    data,
+    error
+  } =
+    await sb
+      .from("kas_rt17")
+      .select("*")
+      .eq("id",id)
+      .single();
+
+
+  if(error){
+
+    alert(
+      "Gagal mengambil data KAS:\n" +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "kasId"
+  ).value =
+    data.id;
+
+
+  document.getElementById(
+    "kasTanggal"
+  ).value =
+    data.tanggal || "";
+
+
+  document.getElementById(
+    "kasJenis"
+  ).value =
+    data.jenis || "pemasukan";
+
+
+  document.getElementById(
+    "kasKeterangan"
+  ).value =
+    data.keterangan || "";
+
+
+  document.getElementById(
+    "kasNominal"
+  ).value =
+    data.nominal || "";
+
+
+  document.getElementById(
+    "kasCatatan"
+  ).value =
+    data.catatan || "";
+
+
+  document.getElementById(
+    "kasFormTitle"
+  ).textContent =
+    "✏️ Edit Transaksi KAS";
+
+
+  document.getElementById(
+    "kasSaveButton"
+  ).textContent =
+    "💾 Update Transaksi";
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   RESET FORM KAS
+====================================================== */
+
+function resetKasForm(){
+
+  document.getElementById(
+    "kasId"
+  ).value = "";
+
+
+  document.getElementById(
+    "kasTanggal"
+  ).value =
+    today();
+
+
+  document.getElementById(
+    "kasJenis"
+  ).value =
+    "pemasukan";
+
+
+  document.getElementById(
+    "kasKeterangan"
+  ).value = "";
+
+
+  document.getElementById(
+    "kasNominal"
+  ).value = "";
+
+
+  document.getElementById(
+    "kasCatatan"
+  ).value = "";
+
+
+  document.getElementById(
+    "kasFormTitle"
+  ).textContent =
+    "💰 Tambah Transaksi KAS";
+
+
+  document.getElementById(
+    "kasSaveButton"
+  ).textContent =
+    "💾 Simpan Transaksi";
+
+}
+
+
+/* =====================================================
+   DELETE KAS
+====================================================== */
+
+async function deleteKas(id){
+
+  const yakin =
+    confirm(
+      "Yakin ingin menghapus transaksi KAS ini?\n\nData yang dihapus tidak dapat dikembalikan."
+    );
+
+
+  if(!yakin){
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await sb
+      .from("kas_rt17")
+      .delete()
+      .eq("id",id);
+
+
+  if(error){
+
+    alert(
+      "Gagal menghapus KAS:\n" +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  showToast(
+    "Transaksi KAS berhasil dihapus."
+  );
+
+
+  await loadKas();
+
+}
+
+
+/* =====================================================
+   DELETE DATA UMUM
+====================================================== */
 
 async function deleteRow(
   table,
   id
 ){
 
-  if(
-    !confirm(
+  const yakin =
+    confirm(
       "Yakin ingin menghapus data ini?"
-    )
-  ){
+    );
+
+
+  if(!yakin){
 
     return;
+
   }
 
 
@@ -1752,24 +3210,22 @@ async function deleteRow(
     await sb
       .from(table)
       .delete()
-      .eq(
-        "id",
-        id
-      );
+      .eq("id",id);
 
 
   if(error){
 
     alert(
-      "Gagal: " +
+      "Gagal menghapus:\n" +
       error.message
     );
 
     return;
+
   }
 
 
-  alert(
+  showToast(
     "Data berhasil dihapus."
   );
 
@@ -1781,7 +3237,7 @@ async function deleteRow(
 
 /* =====================================================
    COUNTS
-===================================================== */
+====================================================== */
 
 async function updateCounts(){
 
@@ -1814,11 +3270,13 @@ async function updateCounts(){
     const [
       table,
       elementId
-    ] of tables
+    ]
+    of tables
   ){
 
     const {
-      count
+      count,
+      error
     } =
       await sb
         .from(table)
@@ -1831,10 +3289,14 @@ async function updateCounts(){
         );
 
 
-    document
-      .getElementById(elementId)
-      .textContent =
-      count || 0;
+    if(!error){
+
+      document
+        .getElementById(elementId)
+        .textContent =
+        count || 0;
+
+    }
 
   }
 
@@ -1842,8 +3304,8 @@ async function updateCounts(){
 
 
 /* =====================================================
-   AUTH SESSION
-===================================================== */
+   AUTH STATE
+====================================================== */
 
 sb.auth.onAuthStateChange(
   (
@@ -1852,8 +3314,7 @@ sb.auth.onAuthStateChange(
   ) => {
 
     if(
-      event ===
-      "SIGNED_OUT"
+      event === "SIGNED_OUT"
     ){
 
       showLogin();
@@ -1865,8 +3326,34 @@ sb.auth.onAuthStateChange(
 
 
 /* =====================================================
+   ENTER KEY LOGIN
+====================================================== */
+
+document
+  .getElementById("password")
+  .addEventListener(
+    "keydown",
+    function(e){
+
+      if(e.key === "Enter"){
+
+        login();
+
+      }
+
+    }
+  );
+
+
+/* =====================================================
    START
-===================================================== */
+====================================================== */
+
+document.getElementById(
+  "kasTanggal"
+).value =
+today();
+
 
 checkAdmin();
 

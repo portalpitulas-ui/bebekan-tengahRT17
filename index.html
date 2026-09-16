@@ -1,510 +1,555 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Kampung Bebekan Tengah — RT 17 / RW 05</title>
-
-<meta
-name="description"
-content="Website resmi informasi Kampung Bebekan Tengah RT 17 / RW 05"
->
+<meta name="description" content="Website resmi Kampung Bebekan Tengah RT 17 / RW 05">
 
 <style>
-
 :root{
---g:#087443;
---d:#064d31;
---l:#eef9f1;
---t:#17352a;
---m:#64766e;
---w:#fff
+  --g:#087443;
+  --d:#064d31;
+  --l:#eef9f1;
+  --t:#17352a;
+  --m:#64766e;
+  --w:#fff;
+  --red:#c62828;
 }
 
 *{
-box-sizing:border-box
+  box-sizing:border-box;
 }
 
 html{
-scroll-behavior:smooth
+  scroll-behavior:smooth;
 }
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-color:var(--t);
-line-height:1.65
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--t);
+  line-height:1.65;
+  background:#fff;
 }
 
 a{
-text-decoration:none;
-color:inherit
+  text-decoration:none;
+  color:inherit;
 }
 
 .c{
-width:min(1120px,92%);
-margin:auto
+  width:min(1120px,92%);
+  margin:auto;
 }
 
+/* ================= HEADER ================= */
+
 header{
-position:sticky;
-top:0;
-z-index:5;
-background:#fffffff2;
-border-bottom:1px solid #e4ece7
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:#fffffff2;
+  border-bottom:1px solid #e4ece7;
+  backdrop-filter:blur(10px);
 }
 
 .nav{
-height:72px;
-display:flex;
-justify-content:space-between;
-align-items:center
+  min-height:72px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
 }
 
 .brand{
-font-weight:800;
-color:var(--d);
-display:flex;
-gap:10px;
-align-items:center
+  font-weight:800;
+  color:var(--d);
+  display:flex;
+  gap:10px;
+  align-items:center;
 }
 
 .logo{
-width:42px;
-height:42px;
-border-radius:12px;
-background:var(--g);
-color:#fff;
-display:grid;
-place-items:center;
-font-size:23px
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:var(--g);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:23px;
 }
 
 .brand small{
-display:block;
-font-size:11px;
-color:var(--g)
+  display:block;
+  font-size:11px;
+  color:var(--g);
 }
 
 nav{
-display:flex;
-gap:6px
+  display:flex;
+  gap:5px;
+  align-items:center;
+  flex-wrap:wrap;
 }
 
 nav a{
-padding:9px 11px;
-border-radius:9px;
-font-size:14px
+  padding:9px 10px;
+  border-radius:9px;
+  font-size:13px;
 }
 
 nav a:hover{
-background:var(--g);
-color:#fff
+  background:var(--g);
+  color:#fff;
 }
 
 .hamb{
-display:none;
-background:var(--l);
-border:0;
-border-radius:9px;
-padding:8px 12px;
-font-size:22px
+  display:none;
+  background:var(--l);
+  border:0;
+  border-radius:9px;
+  padding:8px 12px;
+  font-size:22px;
+  cursor:pointer;
 }
 
+/* ================= HERO ================= */
+
 .hero{
-min-height:590px;
-
-background:
-linear-gradient(90deg,#023c27d9,#023c2750),
-url('https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1800&q=85')
-center/cover;
-
-display:flex;
-align-items:center;
-color:#fff
+  min-height:590px;
+  background:
+    linear-gradient(90deg,#023c27d9,#023c2750),
+    url('https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1800&q=85')
+    center/cover;
+  display:flex;
+  align-items:center;
+  color:#fff;
 }
 
 .hero h1{
-font-size:clamp(42px,7vw,75px);
-line-height:1.02;
-margin:10px 0
+  font-size:clamp(42px,7vw,75px);
+  line-height:1.02;
+  margin:10px 0;
 }
 
 .hero h1 span{
-color:#9bea62
+  color:#9bea62;
 }
 
 .hero p{
-font-size:19px
+  font-size:19px;
 }
 
 .pill{
-background:#8fe35b25;
-border:1px solid #ffffff30;
-border-radius:30px;
-padding:7px 13px
+  background:#8fe35b25;
+  border:1px solid #ffffff30;
+  border-radius:30px;
+  padding:7px 13px;
 }
 
 .btn{
-display:inline-block;
-background:var(--g);
-color:#fff;
-border:0;
-border-radius:25px;
-padding:12px 18px;
-font-weight:800;
-margin:5px
+  display:inline-block;
+  background:var(--g);
+  color:#fff;
+  border:0;
+  border-radius:25px;
+  padding:12px 18px;
+  font-weight:800;
+  margin:5px;
+  cursor:pointer;
+}
+
+.btn:hover{
+  opacity:.9;
 }
 
 .alt{
-background:transparent;
-border:2px solid #fff
+  background:transparent;
+  border:2px solid #fff;
 }
 
+/* ================= SECTION ================= */
+
 section{
-padding:70px 0
+  padding:70px 0;
 }
 
 .title{
-text-align:center;
-max-width:760px;
-margin:0 auto 35px
+  text-align:center;
+  max-width:760px;
+  margin:0 auto 35px;
 }
 
 .title h2{
-color:var(--d);
-font-size:34px;
-margin:0 0 8px
+  color:var(--d);
+  font-size:34px;
+  margin:0 0 8px;
 }
 
 .title p{
-color:var(--m)
+  color:var(--m);
 }
 
 .center{
-text-align:center;
-max-width:780px;
-margin:auto
+  text-align:center;
+  max-width:780px;
+  margin:auto;
 }
+
+/* ================= CARD ================= */
 
 .quick,
 .news{
-background:var(--l)
+  background:var(--l);
 }
 
 .grid3{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
 .card{
-background:#fff;
-border:1px solid #e4ece7;
-border-radius:18px;
-padding:25px;
-box-shadow:0 10px 30px #064d3110
+  background:#fff;
+  border:1px solid #e4ece7;
+  border-radius:18px;
+  padding:25px;
+  box-shadow:0 10px 30px #064d3110;
 }
 
 .icon{
-width:50px;
-height:50px;
-border-radius:15px;
-background:var(--g);
-color:#fff;
-display:grid;
-place-items:center;
-font-size:23px
+  width:50px;
+  height:50px;
+  border-radius:15px;
+  background:var(--l);
+  display:grid;
+  place-items:center;
+  font-size:23px;
+  margin-bottom:10px;
 }
 
+/* ================= ABOUT ================= */
+
 .about{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-align-items:center
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
 }
 
 .photo{
-height:370px;
-border-radius:22px;
-background:#ddd center/cover
+  height:370px;
+  border-radius:22px;
+  background:#ddd center/cover;
 }
+
+/* ================= AGENDA ================= */
 
 .agenda{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:35px
-} 
-
-<!DOCTYPE html>
-<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kampung Bebekan Tengah — RT 17 / RW 05</title>
-<meta name="description" content="Website resmi informasi Kampung Bebekan Tengah RT 17 / RW 05">
-<style>
-:root{--g:#087443;--d:#064d31;--l:#eef9f1;--t:#17352a;--m:#64766e;--w:#fff}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:var(--t);line-height:1.65}a{text-decoration:none;color:inherit}.c{width:min(1120px,92%);margin:auto}
-header{position:sticky;top:0;z-index:5;background:#fffffff2;border-bottom:1px solid #e4ece7}.nav{height:72px;display:flex;justify-content:space-between;align-items:center}.brand{font-weight:800;color:var(--d);display:flex;gap:10px;align-items:center}.logo{width:42px;height:42px;border-radius:12px;background:var(--g);color:#fff;display:grid;place-items:center;font-size:23px}.brand small{display:block;font-size:11px;color:var(--g)}nav{display:flex;gap:6px}nav a{padding:9px 11px;border-radius:9px;font-size:14px}nav a:hover{background:var(--g);color:#fff}.hamb{display:none;background:var(--l);border:0;border-radius:9px;padding:8px 12px;font-size:22px}
-.hero{min-height:590px;background:linear-gradient(90deg,#023c27d9,#023c2750),url('https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1800&q=85') center/cover;display:flex;align-items:center;color:#fff}.hero h1{font-size:clamp(42px,7vw,75px);line-height:1.02;margin:10px 0}.hero h1 span{color:#9bea62}.hero p{font-size:19px}.pill{background:#8fe35b25;border:1px solid #ffffff30;border-radius:30px;padding:7px 13px}.btn{display:inline-block;background:var(--g);color:#fff;border:0;border-radius:25px;padding:12px 18px;font-weight:800;margin:5px}.alt{background:transparent;border:2px solid #fff}section{padding:70px 0}.title{text-align:center;max-width:760px;margin:0 auto 35px}.title h2{color:var(--d);font-size:34px;margin:0 0 8px}.title p{color:var(--m)}.center{text-align:center;max-width:780px;margin:auto}.quick,.news{background:var(--l)}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{background:#fff;border:1px solid #e4ece7;border-radius:18px;padding:25px;box-shadow:0 10px 30px #064d3110}.icon{width:50px;height:50px;border-radius:15px;background:var(--g);color:#fff;display:grid;place-items:center;font-size:23px}.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}.photo{height:370px;border-radius:22px;background:#ddd center/cover}.agenda{display:grid;grid-template-columns:1fr 1fr;gap:35px}.event{padding:15px 0;border-bottom:1px solid #e1e9e4}.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.gallery img{width:100%;height:170px;object-fit:cover;border-radius:15px}.cta{background:var(--d);color:#fff}.cta .c{display:flex;justify-content:space-between;align-items:center;gap:20px}.cta h2{font-size:34px;margin:0}footer{background:#043b26;color:#fff;padding:40px 0}.foot{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px}.muted{color:#bfd5c9}.copy{text-align:center;border-top:1px solid #ffffff20;margin-top:25px;padding-top:18px;font-size:13px;color:#b7cec2}
-@media(max-width:800px){nav{display:none;position:absolute;top:72px;left:0;right:0;background:#fff;padding:10px;flex-direction:column}nav.show{display:flex}.hamb{display:block}.grid3,.about,.agenda,.foot{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}.cta .c{display:block}}
-
-.kas-stats{margin-bottom:25px}
-.kas-stat{border-top:4px solid var(--g)}
-.kas-stat strong{display:block;font-size:28px;margin-top:5px}
-.kas-stat.masuk{border-top-color:#16834a}
-.kas-stat.masuk strong{color:#16834a}
-.kas-stat.keluar{border-top-color:#c62828}
-.kas-stat.keluar strong{color:#c62828}
-.kas-stat.saldo strong{color:var(--d)}
-.kas-label{font-weight:700;color:var(--m)}
-.kas-item{display:grid;grid-template-columns:120px 1fr auto;gap:15px;align-items:center;padding:16px 0;border-bottom:1px solid #e4ece7}
-.kas-item:last-child{border-bottom:0}
-.kas-date{font-size:13px;color:var(--m)}
-.kas-desc strong{display:block}
-.kas-note{font-size:13px;color:var(--m)}
-.kas-amount{text-align:right;font-weight:800;white-space:nowrap}
-.kas-in{color:#16834a}
-.kas-out{color:#c62828}
-.kas-empty{padding:20px;text-align:center;color:var(--m);background:var(--l);border-radius:14px}
-@media(max-width:800px){
-  .kas-item{grid-template-columns:1fr;gap:5px}
-  .kas-amount{text-align:left}
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:35px;
 }
-
-</style></head><body>
-<header><div class="c nav"><a class="brand" href="#home"><div class="logo">⌂</div><div><span id="brand">KAMPUNG BEBEKAN TENGAH</span><small id="brandSub">RT 17 / RW 05</small></div></a><button class="hamb" onclick="document.querySelector('nav').classList.toggle('show')">☰</button><nav>
-<a href="#home">Beranda</a><a href="#profil">Profil</a><a href="#pengurus">Kepengurusan</a><a href="#informasi">Informasi</a><a href="#kegiatan">Kegiatan</a><a href="#galeri">Galeri</a><a href="#kas">💰 KAS RT 17</a><a href="#kontak">Kontak</a></nav></div></header>
-<main id="app"><section class="hero" id="home"><div class="c"><b style="color:#9bea62;letter-spacing:2px">SELAMAT DATANG</b><h1 id="heroTitle">KAMPUNG <span>BEBEKAN TENGAH</span></h1><h2 id="heroSub">RT 17 / RW 05</h2><p><span class="pill" id="slogan">Guyub • Rukun • Bersih • Aman • Nyaman</span></p><a class="btn" href="#informasi">📢 Informasi Warga</a><a class="btn alt" href="#galeri">📸 Lihat Galeri</a></div></section>
-<section><div class="c center"><div class="title"><h2>Selamat Datang</h2><p id="welcome">Memuat informasi...</p></div></div></section>
-<section class="quick"><div class="c grid3"><div class="card"><div class="icon">📢</div><h3>Informasi Warga</h3><p>Pengumuman dan informasi terbaru.</p><a class="btn" href="#informasi">Lihat Informasi →</a></div><div class="card"><div class="icon">📅</div><h3>Kegiatan & Agenda</h3><p>Jadwal kegiatan warga.</p><a class="btn" href="#kegiatan">Lihat Agenda →</a></div><div class="card"><div class="icon">📸</div><h3>Galeri Kampung</h3><p>Dokumentasi kegiatan dan kebersamaan.</p><a class="btn" href="#galeri">Lihat Galeri →</a></div><div class="card"><div class="icon">💰</div><h3>KAS RT 17</h3><p>Transparansi pemasukan, pengeluaran, dan saldo kas warga.</p><a class="btn" href="#kas">Lihat KAS →</a></div></div></section>
-<section id="profil"><div class="c about"><div id="aboutPhoto" class="photo"></div><div><h2>Tentang Kampung Kami</h2><p id="profileText"></p><p id="historyText"></p><a class="btn" href="#profil-detail">Profil Lengkap →</a></div></div></section>
-<section class="news"><div class="c"><div class="title"><h2>📢 Informasi Terbaru</h2><p>Pengumuman yang dikelola oleh admin.</p></div><div id="news" class="grid3"></div></div></section>
-<section id="kegiatan"><div class="c"><div class="agenda"><div><h2>📅 Kegiatan & Agenda</h2><div id="events"></div></div><div><h2>📸 Momen Kebersamaan</h2><div id="gallery" class="gallery"></div></div></div></div></section>
-<section class="cta"><div class="c"><div><h2>Bersama Kita Bisa</h2><p>Lingkungan yang nyaman tercipta dari kepedulian dan kebersamaan seluruh warga.</p></div><a class="btn" href="#kontak">📞 Hubungi Pengurus →</a></div></section>
-<section id="profil-detail" style="display:none"><div class="c card"><h2>Profil Kampung</h2><p id="pd"></p><h3>Sejarah</h3><p id="ph"></p><p><b>Kelurahan:</b> <span id="kel"></span><br><b>Kecamatan:</b> <span id="kec"></span><br><b>Kota/Kabupaten:</b> <span id="kota"></span><br><b>Provinsi:</b> <span id="prov"></span></p></div></section>
-<section id="pengurus" style="display:none"><div class="c"><div class="title"><h2>Struktur Kepengurusan</h2></div><div id="staff" class="grid3"></div></div></section>
-<section id="informasi" style="display:none"><div class="c"><div class="title"><h2>Informasi Warga</h2></div><div id="allNews" class="grid3"></div></div></section>
-<section id="galeri" style="display:none"><div class="c"><div class="title"><h2>Galeri Kampung</h2></div><div id="allGallery" class="gallery"></div></div></section>
-
-<section id="kas" style="display:none">
-  <div class="c">
-    <div class="title">
-      <h2>💰 KAS RT 17</h2>
-      <p>Transparansi keuangan KAS RT 17 untuk warga Kampung Bebekan Tengah.</p>
-    </div>
-
-    <div class="grid3 kas-stats">
-      <div class="card kas-stat saldo">
-        <div class="kas-label">Saldo KAS</div>
-        <strong id="kasSaldo">Rp 0</strong>
-      </div>
-      <div class="card kas-stat masuk">
-        <div class="kas-label">Total Pemasukan</div>
-        <strong id="kasMasuk">Rp 0</strong>
-      </div>
-      <div class="card kas-stat keluar">
-        <div class="kas-label">Total Pengeluaran</div>
-        <strong id="kasKeluar">Rp 0</strong>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="title" style="margin-bottom:20px">
-        <h2 style="font-size:26px">📋 Riwayat KAS</h2>
-        <p>Data diperbarui langsung dari sistem.</p>
-      </div>
-      <div id="kasList">
-        <p>Memuat data KAS...</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="kontak" style="display:none"><div class="c"><div class="title"><h2>Hubungi Kami</h2></div><div class="grid3"><div class="card"><h3>Ketua RT</h3><p id="cn"></p><p id="cw"></p></div><div class="card"><h3>Alamat</h3><p id="ca"></p></div><div class="card"><h3>Online</h3><p id="ce"></p><a id="cm" class="btn" target="_blank">📍 Google Maps</a></div></div></div></section>
-</main><footer><div class="c foot"><div><h3>KAMPUNG BEBEKAN TENGAH</h3><p class="muted">RT 17 / RW 05</p><p class="muted">Guyub • Rukun • Bersih • Aman • Nyaman</p></div><div><h3>Menu</h3><p><a href="#profil">Profil</a><br><a href="#informasi">Informasi</a><br><a href="#kegiatan">Kegiatan</a></p></div><div><h3>Kontak</h3><p class="muted" id="fc"></p></div></div><div class="c copy">© 2026 Kampung Bebekan Tengah RT 17 / RW 05</div></footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const SUPABASE_URL='https://ecufesvndczpxtjjkznf.supabase.co';
-const SUPABASE_ANON_KEY='sb_publishable_gZHRu-Mptte4AeOXBYQ_dQ_qinsK7Z2';
-const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-async function load(){try{
-let [{data:s},{data:st},{data:an},{data:ev},{data:ga},{data:co},{data:kas}]=await Promise.all([
-sb.from('site_content').select('*').eq('id',1).single(),sb.from('staff').select('*').order('sort_order'),sb.from('announcements').select('*').order('date',{ascending:false}),sb.from('events').select('*').order('date'),sb.from('gallery').select('*').order('created_at',{ascending:false}),sb.from('contact').select('*').eq('id',1).single(),sb.from('kas_rt17').select('*').order('tanggal',{ascending:false}).order('created_at',{ascending:false})]);
-if(s){brand.textContent=s.hero_title;brandSub.textContent=s.hero_sub;heroTitle.innerHTML=esc(s.hero_title).replace('BEBEKAN TENGAH','<span>BEBEKAN TENGAH</span>');heroSub.textContent=s.hero_sub;slogan.textContent=s.slogan;welcome.textContent=s.welcome;profileText.textContent=s.profile;historyText.textContent=s.history;pd.textContent=s.profile;ph.textContent=s.history;kel.textContent=s.kelurahan;kec.textContent=s.kecamatan;kota.textContent=s.kota;prov.textContent=s.provinsi;if(s.hero_image){document.querySelector('.hero').style.backgroundImage=`linear-gradient(90deg,#023c27d9,#023c2750),url('${s.hero_image}')`;aboutPhoto.style.backgroundImage=`url('${s.hero_image}')`}}
-const news=(an||[]).map(x=>`<article class="card"><small>${esc(x.date||'')}</small><h3>${esc(x.title)}</h3><p>${esc(x.body)}</p></article>`).join('')||'<div class="card">Belum ada pengumuman.</div>';document.getElementById('news').innerHTML=news;allNews.innerHTML=news;
-events.innerHTML=(ev||[]).map(x=>`<div class="event"><b>${esc(x.title)}</b><br>📅 ${esc(x.date)} &nbsp; 🕒 ${esc(x.time)}<br>📍 ${esc(x.place)}<br>${esc(x.body)}</div>`).join('')||'<p>Belum ada agenda.</p>';
-const pics=(ga||[]).map(x=>`<figure><img src="${esc(x.image_url)}" alt="${esc(x.title)}"><figcaption>${esc(x.title)}</figcaption></figure>`).join('')||'<p>Belum ada foto.</p>';gallery.innerHTML=pics;allGallery.innerHTML=pics;
-staff.innerHTML=(st||[]).map(x=>`<div class="card"><div class="icon">👤</div><h3>${esc(x.role)}</h3><p>${esc(x.name)}</p></div>`).join('')||'<div class="card">Data pengurus belum diisi.</div>';
-if(co){cn.textContent=co.leader_name;cw.textContent='📱 '+co.whatsapp;ce.textContent=co.email;ca.textContent=co.address;fc.textContent=co.whatsapp;if(co.maps_url)cm.href=co.maps_url;else cm.style.display='none'}
-
-const totalMasuk=(kas||[]).filter(x=>x.jenis==='pemasukan').reduce((a,x)=>a+Number(x.nominal||0),0);
-const totalKeluar=(kas||[]).filter(x=>x.jenis==='pengeluaran').reduce((a,x)=>a+Number(x.nominal||0),0);
-const saldoKas=totalMasuk-totalKeluar;
-const rp=n=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n||0));
-document.getElementById('kasSaldo').textContent=rp(saldoKas);
-document.getElementById('kasMasuk').textContent=rp(totalMasuk);
-document.getElementById('kasKeluar').textContent=rp(totalKeluar);
-
-const kasRows=(kas||[]).map(x=>{
-  const masuk=x.jenis==='pemasukan';
-  const t=x.tanggal?new Date(x.tanggal+'T00:00:00').toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}):'-';
-  return `<div class="kas-item">
-    <div class="kas-date">📅 ${esc(t)}</div>
-    <div class="kas-desc"><strong>${esc(x.keterangan)}</strong>${x.catatan?`<span class="kas-note">${esc(x.catatan)}</span>`:''}</div>
-    <div class="kas-amount ${masuk?'kas-in':'kas-out'}">${masuk?'＋':'－'} ${rp(x.nominal)}</div>
-  </div>`;
-}).join('');
-document.getElementById('kasList').innerHTML=kasRows||'<div class="kas-empty">Belum ada transaksi KAS RT 17.</div>';
-
-}catch(e){document.getElementById('app').innerHTML='<div class="c"><section><div class="card"><h2>Website belum terhubung</h2><p>Isi SUPABASE_URL dan SUPABASE_ANON_KEY pada config.js.</p></div></section></div>'}}
-function route(){const h=location.hash.slice(1)||'home';document.querySelectorAll('main section[id]').forEach(s=>{s.style.display=(['profil','kegiatan','home'].includes(s.id)||s.id===h)?'block':'none'});} });const h=location.hash||'#home';document.querySelectorAll('main section[id]').forEach(s=>{if(['home','profil','kegiatan'].includes(s.id))s.style.display='block';else s.style.display='none'});if(h==='#profil')document.querySelector('#profil-detail').style.display='block';if(['#pengurus','#informasi','#galeri','#kontak'].includes(h))document.querySelector(h).style.display='block';if(h!=='#home')window.scrollTo({top:document.querySelector(h)?.offsetTop||0,behavior:'smooth'})}
-window.addEventListener('hashchange',route);route();load();
-</script></body></html>
 
 .event{
-padding:15px 0;
-border-bottom:1px solid #e1e9e4
+  padding:15px 0;
+  border-bottom:1px solid #e1e9e4;
 }
 
+/* ================= GALLERY ================= */
+
 .gallery{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
 }
 
 .gallery figure{
-margin:0
+  margin:0;
 }
 
 .gallery img{
-width:100%;
-height:170px;
-object-fit:cover;
-border-radius:15px
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  border-radius:15px;
 }
 
 .gallery figcaption{
-padding:8px 2px;
-font-size:14px
+  padding:7px;
+  font-size:14px;
 }
 
+/* ================= CTA ================= */
+
 .cta{
-background:var(--d);
-color:#fff
+  background:var(--d);
+  color:#fff;
 }
 
 .cta .c{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:20px
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
 }
 
 .cta h2{
-font-size:34px;
-margin:0
+  font-size:34px;
+  margin:0;
 }
 
+/* ================= KAS ================= */
+
+.kas-section{
+  background:#f7fbf8;
+}
+
+.kas-stats{
+  margin-bottom:30px;
+}
+
+.kas-stat{
+  border-top:4px solid var(--g);
+}
+
+.kas-stat strong{
+  display:block;
+  font-size:27px;
+  margin-top:6px;
+}
+
+.kas-stat.masuk{
+  border-top-color:#16834a;
+}
+
+.kas-stat.masuk strong{
+  color:#16834a;
+}
+
+.kas-stat.keluar{
+  border-top-color:var(--red);
+}
+
+.kas-stat.keluar strong{
+  color:var(--red);
+}
+
+.kas-stat.saldo{
+  border-top-color:var(--d);
+}
+
+.kas-stat.saldo strong{
+  color:var(--d);
+}
+
+.kas-label{
+  font-weight:bold;
+  color:var(--m);
+}
+
+.kas-list{
+  margin-top:15px;
+}
+
+.kas-item{
+  display:grid;
+  grid-template-columns:130px 1fr auto;
+  gap:15px;
+  align-items:center;
+  padding:17px 0;
+  border-bottom:1px solid #e4ece7;
+}
+
+.kas-item:last-child{
+  border-bottom:0;
+}
+
+.kas-date{
+  font-size:13px;
+  color:var(--m);
+}
+
+.kas-desc strong{
+  display:block;
+}
+
+.kas-note{
+  display:block;
+  color:var(--m);
+  font-size:13px;
+}
+
+.kas-amount{
+  text-align:right;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.kas-in{
+  color:#16834a;
+}
+
+.kas-out{
+  color:var(--red);
+}
+
+.kas-empty{
+  padding:25px;
+  text-align:center;
+  color:var(--m);
+  background:var(--l);
+  border-radius:14px;
+}
+
+.kas-info{
+  margin-top:20px;
+  padding:15px;
+  border-radius:14px;
+  background:#eef9f1;
+  color:#35594b;
+  font-size:14px;
+}
+
+/* ================= FOOTER ================= */
+
 footer{
-background:#043b26;
-color:#fff;
-padding:40px 0
+  background:#043b26;
+  color:#fff;
+  padding:40px 0;
 }
 
 .foot{
-display:grid;
-grid-template-columns:1.5fr 1fr 1fr;
-gap:30px
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr;
+  gap:30px;
 }
 
 .muted{
-color:#bfd5c9
+  color:#bfd5c9;
 }
 
 .copy{
-text-align:center;
-border-top:1px solid #ffffff20;
-margin-top:25px;
-padding-top:18px;
-font-size:13px;
-color:#b7cec2
+  text-align:center;
+  border-top:1px solid #ffffff20;
+  margin-top:25px;
+  padding-top:18px;
+  font-size:13px;
+  color:#b7cec2;
 }
 
-.loading{
-text-align:center;
-padding:80px 20px;
-font-size:18px;
-color:var(--m)
-}
+/* ================= ERROR ================= */
 
 .error-box{
-width:min(900px,92%);
-margin:50px auto;
-background:#fff3f3;
-border:1px solid #ffcccc;
-border-radius:15px;
-padding:25px;
-color:#8a2020
+  background:#fff3cd;
+  color:#664d03;
+  border:1px solid #ffe69c;
+  border-radius:15px;
+  padding:18px;
+  margin:20px auto;
+  width:min(1000px,92%);
 }
 
-.error-box pre{
-white-space:pre-wrap;
-word-break:break-word;
-background:#fff;
-padding:15px;
-border-radius:10px;
-overflow:auto;
-font-size:13px
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+  nav{
+    gap:2px;
+  }
+
+  nav a{
+    font-size:12px;
+    padding:8px;
+  }
 }
 
 @media(max-width:800px){
 
-nav{
-display:none;
-position:absolute;
-top:72px;
-left:0;
-right:0;
-background:#fff;
-padding:10px;
-flex-direction:column
+  .hamb{
+    display:block;
+  }
+
+  nav{
+    display:none;
+    position:absolute;
+    top:72px;
+    left:0;
+    right:0;
+    background:#fff;
+    padding:10px;
+    flex-direction:column;
+    align-items:stretch;
+    box-shadow:0 10px 25px #00000012;
+  }
+
+  nav.show{
+    display:flex;
+  }
+
+  nav a{
+    padding:12px;
+  }
+
+  .grid3,
+  .about,
+  .agenda,
+  .foot{
+    grid-template-columns:1fr;
+  }
+
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .cta .c{
+    display:block;
+  }
+
+  .kas-item{
+    grid-template-columns:1fr;
+    gap:5px;
+  }
+
+  .kas-amount{
+    text-align:left;
+  }
+
+  .hero{
+    min-height:520px;
+  }
+
+  section{
+    padding:55px 0;
+  }
 }
 
-nav.show{
-display:flex
-}
+@media(max-width:480px){
 
-.hamb{
-display:block
-}
+  .gallery{
+    grid-template-columns:1fr;
+  }
 
-.grid3,
-.about,
-.agenda,
-.foot{
-grid-template-columns:1fr
-}
+  .gallery img{
+    height:220px;
+  }
 
-.gallery{
-grid-template-columns:repeat(2,1fr)
-}
-
-.cta .c{
-display:block
-}
-
+  .hero h1{
+    font-size:42px;
+  }
 }
 
 </style>
-
 </head>
 
 <body>
 
+<!-- =====================================================
+     HEADER
+====================================================== -->
 
 <header>
 
@@ -512,24 +557,14 @@ display:block
 
 <a class="brand" href="#home">
 
-<div class="logo">
-⌂
-</div>
+<div class="logo">⌂</div>
 
 <div>
-
-<span id="brand">
-KAMPUNG BEBEKAN TENGAH
-</span>
-
-<small id="brandSub">
-RT 17 / RW 05
-</small>
-
+<span id="brand">KAMPUNG BEBEKAN TENGAH</span>
+<small id="brandSub">RT 17 / RW 05</small>
 </div>
 
 </a>
-
 
 <button
 class="hamb"
@@ -538,36 +573,16 @@ onclick="document.querySelector('nav').classList.toggle('show')"
 ☰
 </button>
 
-
 <nav>
 
-<a href="#home">
-Beranda
-</a>
-
-<a href="#profil">
-Profil
-</a>
-
-<a href="#pengurus">
-Kepengurusan
-</a>
-
-<a href="#informasi">
-Informasi
-</a>
-
-<a href="#kegiatan">
-Kegiatan
-</a>
-
-<a href="#galeri">
-Galeri
-</a>
-
-<a href="#kontak">
-Kontak
-</a>
+<a href="#home">Beranda</a>
+<a href="#profil">Profil</a>
+<a href="#pengurus">Kepengurusan</a>
+<a href="#informasi">Informasi</a>
+<a href="#kegiatan">Kegiatan</a>
+<a href="#galeri">Galeri</a>
+<a href="#kas">💰 KAS RT 17</a>
+<a href="#kontak">Kontak</a>
 
 </nav>
 
@@ -578,11 +593,11 @@ Kontak
 
 <main id="app">
 
+<!-- =====================================================
+     HOME
+====================================================== -->
 
-<section
-class="hero"
-id="home"
->
+<section class="hero" id="home">
 
 <div class="c">
 
@@ -591,8 +606,7 @@ SELAMAT DATANG
 </b>
 
 <h1 id="heroTitle">
-KAMPUNG
-<span>BEBEKAN TENGAH</span>
+KAMPUNG <span>BEBEKAN TENGAH</span>
 </h1>
 
 <h2 id="heroSub">
@@ -600,30 +614,17 @@ RT 17 / RW 05
 </h2>
 
 <p>
-
-<span
-class="pill"
-id="slogan"
->
+<span class="pill" id="slogan">
 Guyub • Rukun • Bersih • Aman • Nyaman
 </span>
-
 </p>
 
-
-<a
-class="btn"
-href="#informasi"
->
+<a class="btn" href="#informasi">
 📢 Informasi Warga
 </a>
 
-
-<a
-class="btn alt"
-href="#galeri"
->
-📸 Lihat Galeri
+<a class="btn alt" href="#kas">
+💰 Lihat KAS RT 17
 </a>
 
 </div>
@@ -631,15 +632,17 @@ href="#galeri"
 </section>
 
 
+<!-- =====================================================
+     WELCOME
+====================================================== -->
+
 <section>
 
 <div class="c center">
 
 <div class="title">
 
-<h2>
-Selamat Datang
-</h2>
+<h2>Selamat Datang</h2>
 
 <p id="welcome">
 Memuat informasi...
@@ -652,29 +655,25 @@ Memuat informasi...
 </section>
 
 
+<!-- =====================================================
+     QUICK MENU
+====================================================== -->
+
 <section class="quick">
 
 <div class="c grid3">
 
-
 <div class="card">
 
-<div class="icon">
-📢
-</div>
+<div class="icon">📢</div>
 
-<h3>
-Informasi Warga
-</h3>
+<h3>Informasi Warga</h3>
 
 <p>
-Pengumuman dan informasi terbaru.
+Pengumuman dan informasi terbaru untuk warga.
 </p>
 
-<a
-class="btn"
-href="#informasi"
->
+<a class="btn" href="#informasi">
 Lihat Informasi →
 </a>
 
@@ -683,22 +682,15 @@ Lihat Informasi →
 
 <div class="card">
 
-<div class="icon">
-📅
-</div>
+<div class="icon">📅</div>
 
-<h3>
-Kegiatan & Agenda
-</h3>
+<h3>Kegiatan & Agenda</h3>
 
 <p>
-Jadwal kegiatan warga.
+Jadwal kegiatan dan agenda warga.
 </p>
 
-<a
-class="btn"
-href="#kegiatan"
->
+<a class="btn" href="#kegiatan">
 Lihat Agenda →
 </a>
 
@@ -707,23 +699,16 @@ Lihat Agenda →
 
 <div class="card">
 
-<div class="icon">
-📸
-</div>
+<div class="icon">💰</div>
 
-<h3>
-Galeri Kampung
-</h3>
+<h3>KAS RT 17</h3>
 
 <p>
-Dokumentasi kegiatan dan kebersamaan.
+Transparansi pemasukan, pengeluaran, dan saldo kas.
 </p>
 
-<a
-class="btn"
-href="#galeri"
->
-Lihat Galeri →
+<a class="btn" href="#kas">
+Lihat KAS →
 </a>
 
 </div>
@@ -733,47 +718,39 @@ Lihat Galeri →
 
 </section>
 
+
+<!-- =====================================================
+     PROFIL
+====================================================== -->
 
 <section id="profil">
 
 <div class="c about">
 
-
-<div
-id="aboutPhoto"
-class="photo"
->
-</div>
-
+<div id="aboutPhoto" class="photo"></div>
 
 <div>
 
-<h2>
-Tentang Kampung Kami
-</h2>
+<h2>Tentang Kampung Kami</h2>
 
-<p id="profileText">
-Memuat...
-</p>
+<p id="profileText"></p>
 
-<p id="historyText">
-Memuat...
-</p>
+<p id="historyText"></p>
 
-<a
-class="btn"
-href="#profil-detail"
->
+<a class="btn" href="#profil-detail">
 Profil Lengkap →
 </a>
 
 </div>
 
-
 </div>
 
 </section>
 
+
+<!-- =====================================================
+     INFORMASI TERBARU
+====================================================== -->
 
 <section class="news">
 
@@ -781,23 +758,17 @@ Profil Lengkap →
 
 <div class="title">
 
-<h2>
-📢 Informasi Terbaru
-</h2>
+<h2>📢 Informasi Terbaru</h2>
 
 <p>
-Pengumuman yang dikelola oleh admin.
+Pengumuman dan informasi terbaru Kampung Bebekan Tengah.
 </p>
 
 </div>
 
+<div id="news" class="grid3">
 
-<div
-id="news"
-class="grid3"
->
-
-<div class="loading">
+<div class="card">
 Memuat informasi...
 </div>
 
@@ -808,135 +779,88 @@ Memuat informasi...
 </section>
 
 
+<!-- =====================================================
+     KEGIATAN
+====================================================== -->
+
 <section id="kegiatan">
 
 <div class="c">
 
-<div class="agenda">
+<div class="title">
 
-
-<div>
-
-<h2>
-📅 Kegiatan & Agenda
-</h2>
-
-<div id="events">
-
-Memuat agenda...
-
-</div>
-
-</div>
-
-
-<div>
-
-<h2>
-📸 Momen Kebersamaan
-</h2>
-
-<div
-id="gallery"
-class="gallery"
->
-
-Memuat galeri...
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<section class="cta">
-
-<div class="c">
-
-<div>
-
-<h2>
-Bersama Kita Bisa
-</h2>
+<h2>📅 Kegiatan & Agenda</h2>
 
 <p>
-Lingkungan yang nyaman tercipta dari kepedulian dan kebersamaan seluruh warga.
+Agenda kegiatan warga Kampung Bebekan Tengah.
 </p>
 
 </div>
 
+<div class="agenda">
 
-<a
-class="btn"
-href="#kontak"
->
-📞 Hubungi Pengurus →
-</a>
+<div>
+
+<h3>Agenda Warga</h3>
+
+<div id="events">
+Memuat agenda...
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>🤝 Bersama Membangun Kampung</h3>
+
+<p>
+Mari menjaga kerukunan, kebersihan, keamanan,
+dan kenyamanan lingkungan Kampung Bebekan Tengah.
+</p>
+
+</div>
+
+</div>
 
 </div>
 
 </section>
 
 
-<section
-id="profil-detail"
-style="display:none"
->
+<!-- =====================================================
+     PROFIL DETAIL
+====================================================== -->
+
+<section id="profil-detail" style="display:none">
 
 <div class="c card">
 
-<h2>
-Profil Kampung
-</h2>
+<h2>Profil Kampung</h2>
 
-<p id="pd">
-Memuat...
-</p>
+<p id="pd"></p>
 
-<h3>
-Sejarah
-</h3>
+<h3>Sejarah</h3>
 
-<p id="ph">
-Memuat...
-</p>
+<p id="ph"></p>
 
 <p>
 
-<b>
-Kelurahan:
-</b>
-
+<b>Kelurahan:</b>
 <span id="kel"></span>
 
 <br>
 
-<b>
-Kecamatan:
-</b>
-
+<b>Kecamatan:</b>
 <span id="kec"></span>
 
 <br>
 
-<b>
-Kota/Kabupaten:
-</b>
-
+<b>Kota/Kabupaten:</b>
 <span id="kota"></span>
 
 <br>
 
-<b>
-Provinsi:
-</b>
-
+<b>Provinsi:</b>
 <span id="prov"></span>
 
 </p>
@@ -946,27 +870,25 @@ Provinsi:
 </section>
 
 
-<section
-id="pengurus"
-style="display:none"
->
+<!-- =====================================================
+     PENGURUS
+====================================================== -->
+
+<section id="pengurus" style="display:none">
 
 <div class="c">
 
 <div class="title">
 
-<h2>
-Struktur Kepengurusan
-</h2>
+<h2>Struktur Kepengurusan</h2>
+
+<p>
+Pengurus RT 17 / RW 05 Kampung Bebekan Tengah.
+</p>
 
 </div>
 
-<div
-id="staff"
-class="grid3"
->
-
-Memuat pengurus...
+<div id="staff" class="grid3">
 
 </div>
 
@@ -975,27 +897,25 @@ Memuat pengurus...
 </section>
 
 
-<section
-id="informasi"
-style="display:none"
->
+<!-- =====================================================
+     INFORMASI SEMUA
+====================================================== -->
+
+<section id="informasi" style="display:none">
 
 <div class="c">
 
 <div class="title">
 
-<h2>
-Informasi Warga
-</h2>
+<h2>Informasi Warga</h2>
+
+<p>
+Informasi resmi yang dikelola oleh pengurus.
+</p>
 
 </div>
 
-<div
-id="allNews"
-class="grid3"
->
-
-Memuat informasi...
+<div id="allNews" class="grid3">
 
 </div>
 
@@ -1004,27 +924,25 @@ Memuat informasi...
 </section>
 
 
-<section
-id="galeri"
-style="display:none"
->
+<!-- =====================================================
+     GALERI
+====================================================== -->
+
+<section id="galeri" style="display:none">
 
 <div class="c">
 
 <div class="title">
 
-<h2>
-Galeri Kampung
-</h2>
+<h2>Galeri Kampung</h2>
+
+<p>
+Dokumentasi kegiatan dan kebersamaan warga.
+</p>
 
 </div>
 
-<div
-id="allGallery"
-class="gallery"
->
-
-Memuat galeri...
+<div id="allGallery" class="gallery">
 
 </div>
 
@@ -1033,64 +951,156 @@ Memuat galeri...
 </section>
 
 
-<section
-id="kontak"
-style="display:none"
->
+<!-- =====================================================
+     KAS RT 17
+====================================================== -->
+
+<section id="kas" class="kas-section" style="display:none">
 
 <div class="c">
 
 <div class="title">
 
-<h2>
-Hubungi Kami
-</h2>
+<h2>💰 KAS RT 17</h2>
+
+<p>
+Transparansi keuangan KAS RT 17
+Kampung Bebekan Tengah.
+</p>
 
 </div>
 
+
+<!-- RINGKASAN KAS -->
+
+<div class="grid3 kas-stats">
+
+<div class="card kas-stat saldo">
+
+<div class="kas-label">
+💰 Saldo KAS
+</div>
+
+<strong id="kasSaldo">
+Rp 0
+</strong>
+
+</div>
+
+
+<div class="card kas-stat masuk">
+
+<div class="kas-label">
+📥 Total Pemasukan
+</div>
+
+<strong id="kasMasuk">
+Rp 0
+</strong>
+
+</div>
+
+
+<div class="card kas-stat keluar">
+
+<div class="kas-label">
+📤 Total Pengeluaran
+</div>
+
+<strong id="kasKeluar">
+Rp 0
+</strong>
+
+</div>
+
+</div>
+
+
+<!-- RIWAYAT -->
+
+<div class="card">
+
+<div class="title" style="margin-bottom:20px">
+
+<h2 style="font-size:27px">
+📋 Riwayat KAS
+</h2>
+
+<p>
+Daftar transaksi KAS RT 17 yang tercatat dalam sistem.
+</p>
+
+</div>
+
+<div id="kasList" class="kas-list">
+
+<p>
+Memuat data KAS...
+</p>
+
+</div>
+
+<div class="kas-info">
+
+🔎 <b>Transparansi KAS:</b>
+Data pemasukan dan pengeluaran ditampilkan
+berdasarkan catatan yang dimasukkan oleh pengurus RT.
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     KONTAK
+====================================================== -->
+
+<section id="kontak" style="display:none">
+
+<div class="c">
+
+<div class="title">
+
+<h2>Hubungi Kami</h2>
+
+<p>
+Hubungi pengurus RT 17 / RW 05.
+</p>
+
+</div>
 
 <div class="grid3">
 
 
 <div class="card">
 
-<h3>
-Ketua RT
-</h3>
+<h3>Ketua RT</h3>
 
-<p id="cn">
-Memuat...
-</p>
+<p id="cn"></p>
 
-<p id="cw">
-Memuat...
-</p>
+<p id="cw"></p>
 
 </div>
 
 
 <div class="card">
 
-<h3>
-Alamat
-</h3>
+<h3>Alamat</h3>
 
-<p id="ca">
-Memuat...
-</p>
+<p id="ca"></p>
 
 </div>
 
 
 <div class="card">
 
-<h3>
-Online
-</h3>
+<h3>Online</h3>
 
-<p id="ce">
-Memuat...
-</p>
+<p id="ce"></p>
 
 <a
 id="cm"
@@ -1113,6 +1123,10 @@ rel="noopener"
 
 </main>
 
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
 
 <footer>
 
@@ -1160,6 +1174,12 @@ Informasi
 Kegiatan
 </a>
 
+<br>
+
+<a href="#kas">
+💰 KAS RT 17
+</a>
+
 </p>
 
 </div>
@@ -1171,12 +1191,7 @@ Kegiatan
 Kontak
 </h3>
 
-<p
-class="muted"
-id="fc"
->
-Memuat...
-</p>
+<p class="muted" id="fc"></p>
 
 </div>
 
@@ -1193,24 +1208,23 @@ Memuat...
 </footer>
 
 
-<!-- SUPABASE -->
+<!-- =====================================================
+     SUPABASE
+====================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <script>
-
 
 /* =====================================================
    SUPABASE CONFIG
-   ===================================================== */
+====================================================== */
 
 const SUPABASE_URL =
-"https://ecufesvndczpxtjjkznf.supabase.co";
+'https://ecufesvndczpxtjjkznf.supabase.co';
 
 const SUPABASE_ANON_KEY =
-"sb_publishable_gZHRu-Mptte4AeOXBYQ_dQ_qinsK7Z2";
-
+'sb_publishable_gZHRu-Mptte4AeOXBYQ_dQ_qinsK7Z2';
 
 const sb =
 supabase.createClient(
@@ -1220,236 +1234,149 @@ SUPABASE_ANON_KEY
 
 
 /* =====================================================
-   HELPER ESCAPE
-   ===================================================== */
+   SECURITY / ESCAPE HTML
+====================================================== */
 
-function esc(x){
-
-return String(x ?? '')
-.replace(/[&<>"']/g,function(c){
-
-return {
-
+const esc = x =>
+String(x ?? '')
+.replace(/[&<>"']/g,c=>({
 '&':'&amp;',
 '<':'&lt;',
 '>':'&gt;',
 '"':'&quot;',
 "'":'&#39;'
-
-}[c];
-
-});
-
-}
+}[c]));
 
 
 /* =====================================================
-   FORMAT TANGGAL
-   ===================================================== */
+   FORMAT RUPIAH
+====================================================== */
 
-function formatDate(date){
+const rupiah = n => {
 
-if(!date){
-return '';
-}
-
-try{
-
-return new Date(date).toLocaleDateString(
+return new Intl.NumberFormat(
 'id-ID',
 {
-day:'2-digit',
-month:'long',
-year:'numeric'
+style:'currency',
+currency:'IDR',
+maximumFractionDigits:0
 }
-);
+).format(Number(n || 0));
 
-}catch(e){
-
-return date;
-
-}
-
-}
+};
 
 
 /* =====================================================
-   LOAD DATA
-   ===================================================== */
+   LOAD WEBSITE
+====================================================== */
 
 async function load(){
 
-
 try{
 
-
-console.log(
-"Memulai koneksi ke Supabase..."
-);
-
-
-/* -----------------------------------------------------
-   AMBIL SEMUA DATA
-   ----------------------------------------------------- */
-
-const [
-
-siteResult,
-staffResult,
-announcementResult,
-eventResult,
-galleryResult,
-contactResult
-
-] = await Promise.all([
-
+const results =
+await Promise.all([
 
 sb
 .from('site_content')
 .select('*')
 .eq('id',1)
-.maybeSingle(),
-
+.single(),
 
 sb
 .from('staff')
 .select('*')
-.order('sort_order',{ascending:true}),
-
+.order('sort_order'),
 
 sb
 .from('announcements')
 .select('*')
 .order('date',{ascending:false}),
 
-
 sb
 .from('events')
 .select('*')
-.order('date',{ascending:true}),
-
+.order('date'),
 
 sb
 .from('gallery')
 .select('*')
 .order('created_at',{ascending:false}),
 
-
 sb
 .from('contact')
 .select('*')
 .eq('id',1)
-.maybeSingle()
+.single(),
 
+sb
+.from('kas_rt17')
+.select('*')
+.order('tanggal',{ascending:false})
+.order('created_at',{ascending:false})
 
 ]);
 
 
-/* -----------------------------------------------------
-   CEK ERROR SETIAP TABEL
-   ----------------------------------------------------- */
-
-if(siteResult.error){
-
-throw new Error(
-"site_content: " +
-siteResult.error.message
-);
-
-}
-
-
-if(staffResult.error){
-
-throw new Error(
-"staff: " +
-staffResult.error.message
-);
-
-}
-
-
-if(announcementResult.error){
-
-throw new Error(
-"announcements: " +
-announcementResult.error.message
-);
-
-}
-
-
-if(eventResult.error){
-
-throw new Error(
-"events: " +
-eventResult.error.message
-);
-
-}
-
-
-if(galleryResult.error){
-
-throw new Error(
-"gallery: " +
-galleryResult.error.message
-);
-
-}
-
-
-if(contactResult.error){
-
-throw new Error(
-"contact: " +
-contactResult.error.message
-);
-
-}
-
-
-/* -----------------------------------------------------
-   DATA
-   ----------------------------------------------------- */
-
 const s =
-siteResult.data;
+results[0].data;
 
 const st =
-staffResult.data || [];
+results[1].data || [];
 
 const an =
-announcementResult.data || [];
+results[2].data || [];
 
 const ev =
-eventResult.data || [];
+results[3].data || [];
 
 const ga =
-galleryResult.data || [];
+results[4].data || [];
 
 const co =
-contactResult.data;
+results[5].data;
+
+const kas =
+results[6].data || [];
 
 
-/* -----------------------------------------------------
+/* =====================================================
+   CEK ERROR KAS
+====================================================== */
+
+if(results[6].error){
+
+console.error(
+'Gagal mengambil KAS:',
+results[6].error
+);
+
+document.getElementById('kasList').innerHTML = `
+<div class="kas-empty">
+Data KAS belum dapat dimuat.
+<br>
+<small>
+Pastikan tabel <b>kas_rt17</b> sudah dibuat di Supabase.
+</small>
+</div>
+`;
+
+}
+
+
+/* =====================================================
    SITE CONTENT
-   ----------------------------------------------------- */
+====================================================== */
 
 if(s){
 
+brand.textContent =
+s.hero_title || 'KAMPUNG BEBEKAN TENGAH';
 
-document.getElementById('brand').textContent =
-s.hero_title ||
-'KAMPUNG BEBEKAN TENGAH';
+brandSub.textContent =
+s.hero_sub || 'RT 17 / RW 05';
 
-
-document.getElementById('brandSub').textContent =
-s.hero_sub ||
-'RT 17 / RW 05';
-
-
-document.getElementById('heroTitle').innerHTML =
+heroTitle.innerHTML =
 esc(
 s.hero_title ||
 'KAMPUNG BEBEKAN TENGAH'
@@ -1459,97 +1386,64 @@ s.hero_title ||
 '<span>BEBEKAN TENGAH</span>'
 );
 
+heroSub.textContent =
+s.hero_sub || '';
 
-document.getElementById('heroSub').textContent =
-s.hero_sub ||
-'RT 17 / RW 05';
+slogan.textContent =
+s.slogan || '';
 
+welcome.textContent =
+s.welcome || '';
 
-document.getElementById('slogan').textContent =
-s.slogan ||
-'Guyub • Rukun • Bersih • Aman • Nyaman';
+profileText.textContent =
+s.profile || '';
 
+historyText.textContent =
+s.history || '';
 
-document.getElementById('welcome').textContent =
-s.welcome ||
-'Selamat datang di website resmi Kampung Bebekan Tengah.';
+pd.textContent =
+s.profile || '';
 
+ph.textContent =
+s.history || '';
 
-document.getElementById('profileText').textContent =
-s.profile ||
-'';
+kel.textContent =
+s.kelurahan || '';
 
+kec.textContent =
+s.kecamatan || '';
 
-document.getElementById('historyText').textContent =
-s.history ||
-'';
+kota.textContent =
+s.kota || '';
 
+prov.textContent =
+s.provinsi || '';
 
-document.getElementById('pd').textContent =
-s.profile ||
-'';
-
-
-document.getElementById('ph').textContent =
-s.history ||
-'';
-
-
-document.getElementById('kel').textContent =
-s.kelurahan ||
-'';
-
-
-document.getElementById('kec').textContent =
-s.kecamatan ||
-'';
-
-
-document.getElementById('kota').textContent =
-s.kota ||
-'';
-
-
-document.getElementById('prov').textContent =
-s.provinsi ||
-'';
-
-
-/* HERO IMAGE */
 
 if(s.hero_image){
 
 document.querySelector('.hero').style.backgroundImage =
 `linear-gradient(90deg,#023c27d9,#023c2750),url('${esc(s.hero_image)}')`;
 
-
-document.getElementById('aboutPhoto').style.backgroundImage =
+aboutPhoto.style.backgroundImage =
 `url('${esc(s.hero_image)}')`;
 
 }
 
-
 }
 
 
-/* -----------------------------------------------------
+/* =====================================================
    INFORMASI
-   ----------------------------------------------------- */
+====================================================== */
 
 const newsHTML =
-
-an.length
-
-?
-
-an.map(function(x){
-
-return `
+an.map(x => `
 
 <article class="card">
 
 <small>
-${esc(formatDate(x.date))}
+📅 ${esc(x.date || '')}
 </small>
 
 <h3>
@@ -1562,36 +1456,25 @@ ${esc(x.body)}
 
 </article>
 
-`;
-
-}).join('')
-
-:
-
+`).join('')
+||
 '<div class="card">Belum ada pengumuman.</div>';
 
 
 document.getElementById('news').innerHTML =
 newsHTML;
 
-
 document.getElementById('allNews').innerHTML =
 newsHTML;
 
 
-/* -----------------------------------------------------
-   KEGIATAN
-   ----------------------------------------------------- */
+/* =====================================================
+   EVENTS
+====================================================== */
 
 document.getElementById('events').innerHTML =
 
-ev.length
-
-?
-
-ev.map(function(x){
-
-return `
+ev.map(x => `
 
 <div class="event">
 
@@ -1601,9 +1484,9 @@ ${esc(x.title)}
 
 <br>
 
-📅 ${esc(formatDate(x.date))}
+📅 ${esc(x.date || '')}
 
-&nbsp;&nbsp;
+&nbsp;
 
 🕒 ${esc(x.time || '')}
 
@@ -1617,28 +1500,18 @@ ${esc(x.body || '')}
 
 </div>
 
-`;
-
-}).join('')
-
-:
-
+`).join('')
+||
 '<p>Belum ada agenda.</p>';
 
 
-/* -----------------------------------------------------
-   GALERI
-   ----------------------------------------------------- */
+/* =====================================================
+   GALLERY
+====================================================== */
 
 const pics =
 
-ga.length
-
-?
-
-ga.map(function(x){
-
-return `
+ga.map(x => `
 
 <figure>
 
@@ -1646,7 +1519,6 @@ return `
 src="${esc(x.image_url)}"
 alt="${esc(x.title)}"
 loading="lazy"
-onerror="this.style.display='none'"
 >
 
 <figcaption>
@@ -1655,36 +1527,22 @@ ${esc(x.title)}
 
 </figure>
 
-`;
-
-}).join('')
-
-:
-
+`).join('')
+||
 '<p>Belum ada foto.</p>';
-
-
-document.getElementById('gallery').innerHTML =
-pics;
 
 
 document.getElementById('allGallery').innerHTML =
 pics;
 
 
-/* -----------------------------------------------------
-   PENGURUS
-   ----------------------------------------------------- */
+/* =====================================================
+   STAFF
+====================================================== */
 
 document.getElementById('staff').innerHTML =
 
-st.length
-
-?
-
-st.map(function(x){
-
-return `
+st.map(x => `
 
 <div class="card">
 
@@ -1700,170 +1558,227 @@ ${esc(x.role)}
 ${esc(x.name)}
 </p>
 
-${
-x.photo_url
-
-?
-
-`
+${x.photo_url ? `
 
 <img
 src="${esc(x.photo_url)}"
 alt="${esc(x.name)}"
 style="
-width:90px;
-height:90px;
+width:100%;
+height:220px;
 object-fit:cover;
-border-radius:50%;
+border-radius:15px;
 margin-top:10px;
-"
->
+">
 
-`
+` : ''}
 
+</div>
+
+`).join('')
+||
+'<div class="card">Data pengurus belum diisi.</div>';
+
+
+/* =====================================================
+   CONTACT
+====================================================== */
+
+if(co){
+
+cn.textContent =
+co.leader_name || '';
+
+cw.textContent =
+co.whatsapp
+?
+'📱 '+co.whatsapp
 :
+'';
 
-''
+ce.textContent =
+co.email || '';
+
+ca.textContent =
+co.address || '';
+
+fc.textContent =
+co.whatsapp
+?
+'📱 '+co.whatsapp
+:
+'';
+
+if(co.maps_url){
+
+cm.href =
+co.maps_url;
+
+}else{
+
+cm.style.display =
+'none';
 
 }
+
+}
+
+
+/* =====================================================
+   KAS RT 17
+====================================================== */
+
+const totalMasuk =
+
+kas
+.filter(x =>
+x.jenis === 'pemasukan'
+)
+.reduce(
+(a,x) =>
+a + Number(x.nominal || 0),
+0
+);
+
+
+const totalKeluar =
+
+kas
+.filter(x =>
+x.jenis === 'pengeluaran'
+)
+.reduce(
+(a,x) =>
+a + Number(x.nominal || 0),
+0
+);
+
+
+const saldoKas =
+totalMasuk - totalKeluar;
+
+
+/* RINGKASAN */
+
+document.getElementById('kasSaldo')
+.textContent =
+rupiah(saldoKas);
+
+document.getElementById('kasMasuk')
+.textContent =
+rupiah(totalMasuk);
+
+document.getElementById('kasKeluar')
+.textContent =
+rupiah(totalKeluar);
+
+
+/* RIWAYAT */
+
+const kasRows =
+
+kas.map(x => {
+
+const masuk =
+x.jenis === 'pemasukan';
+
+let tanggal = '-';
+
+if(x.tanggal){
+
+const d =
+new Date(
+x.tanggal+'T00:00:00'
+);
+
+tanggal =
+d.toLocaleDateString(
+'id-ID',
+{
+day:'2-digit',
+month:'short',
+year:'numeric'
+}
+);
+
+}
+
+return `
+
+<div class="kas-item">
+
+<div class="kas-date">
+📅 ${esc(tanggal)}
+</div>
+
+
+<div class="kas-desc">
+
+<strong>
+${esc(x.keterangan)}
+</strong>
+
+${x.catatan
+?
+`<span class="kas-note">
+${esc(x.catatan)}
+</span>`
+:
+''}
+
+</div>
+
+
+<div class="kas-amount
+${masuk?'kas-in':'kas-out'}">
+
+${masuk?'＋':'－'}
+
+${rupiah(x.nominal)}
+
+</div>
 
 </div>
 
 `;
 
-}).join('')
-
-:
-
-'<div class="card">Data pengurus belum diisi.</div>';
+}).join('');
 
 
-/* -----------------------------------------------------
-   KONTAK
-   ----------------------------------------------------- */
+document.getElementById('kasList').innerHTML =
 
-if(co){
+kasRows ||
 
+'<div class="kas-empty">
+Belum ada transaksi KAS RT 17.
+</div>';
 
-document.getElementById('cn').textContent =
-co.leader_name || '-';
-
-
-document.getElementById('cw').textContent =
-co.whatsapp
-?
-'📱 ' + co.whatsapp
-:
-'';
-
-
-document.getElementById('ce').textContent =
-co.email || '-';
-
-
-document.getElementById('ca').textContent =
-co.address || '-';
-
-
-document.getElementById('fc').textContent =
-co.whatsapp || '-';
-
-
-const maps =
-document.getElementById('cm');
-
-
-if(co.maps_url){
-
-maps.href =
-co.maps_url;
-
-}else{
-
-maps.style.display =
-'none';
 
 }
 
-
-}else{
-
-
-document.getElementById('cn').textContent =
-'Belum tersedia';
-
-
-document.getElementById('cw').textContent =
-'';
-
-
-document.getElementById('ce').textContent =
-'Belum tersedia';
-
-
-document.getElementById('ca').textContent =
-'Belum tersedia';
-
-
-document.getElementById('fc').textContent =
-'Belum tersedia';
-
-
-document.getElementById('cm').style.display =
-'none';
-
-}
-
-
-/* -----------------------------------------------------
-   BERHASIL
-   ----------------------------------------------------- */
-
-console.log(
-"Website berhasil mengambil data Supabase."
-);
-
-
-}catch(e){
-
+catch(error){
 
 console.error(
-"SUPABASE ERROR:",
-e
+'Website error:',
+error
 );
-
-
-/* -----------------------------------------------------
-   TAMPILKAN ERROR SEBENARNYA
-   ----------------------------------------------------- */
 
 document.getElementById('app').innerHTML = `
 
 <div class="error-box">
 
 <h2>
-❌ Website gagal mengambil data
+⚠️ Website belum dapat memuat data
 </h2>
 
 <p>
-Koneksi ke Supabase gagal.
-Detail error:
+Terjadi masalah saat menghubungkan website
+dengan database.
 </p>
 
-<pre>${esc(
-e.message || e
-)}</pre>
-
-<p>
-Jika error berisi <b>permission denied</b> atau
-<b>row-level security</b>, masalahnya ada pada
-RLS/policy Supabase.
-</p>
-
-<p>
-Jika error berisi <b>Failed to fetch</b>,
-periksa koneksi internet atau konfigurasi Supabase.
-</p>
+<small>
+${esc(error.message || error)}
+</small>
 
 </div>
 
@@ -1875,128 +1790,49 @@ periksa koneksi internet atau konfigurasi Supabase.
 
 
 /* =====================================================
-   ROUTING MENU
-   ===================================================== */
+   ROUTING HALAMAN
+====================================================== */
 
 function route(){
 
-
 const hash =
-location.hash ||
-'#home';
-
-
-/* SEMBUNYIKAN HALAMAN DETAIL */
+location.hash.slice(1) ||
+'home';
 
 document
 .querySelectorAll('main section[id]')
-.forEach(function(s){
+.forEach(section => {
 
-if(
+const visible =
 
-s.id === 'home' ||
-s.id === 'profil' ||
-s.id === 'kegiatan'
+[
+'home',
+'profil',
+'kegiatan'
+]
+.includes(section.id)
 
-){
+||
+section.id === hash;
 
-s.style.display =
-'block';
-
-}else{
-
-s.style.display =
+section.style.display =
+visible
+?
+'block'
+:
 'none';
 
-}
-
 });
 
 
-/* HALAMAN PROFIL */
+/* Tutup menu mobile */
 
-if(hash === '#profil'){
+const nav =
+document.querySelector('nav');
 
-document
-.getElementById('profil-detail')
-.style.display =
-'block';
+if(nav){
 
-}
-
-
-/* PENGURUS */
-
-if(hash === '#pengurus'){
-
-document
-.getElementById('pengurus')
-.style.display =
-'block';
-
-}
-
-
-/* INFORMASI */
-
-if(hash === '#informasi'){
-
-document
-.getElementById('informasi')
-.style.display =
-'block';
-
-}
-
-
-/* GALERI */
-
-if(hash === '#galeri'){
-
-document
-.getElementById('galeri')
-.style.display =
-'block';
-
-}
-
-
-/* KONTAK */
-
-if(hash === '#kontak'){
-
-document
-.getElementById('kontak')
-.style.display =
-'block';
-
-}
-
-
-/* SCROLL */
-
-if(hash !== '#home'){
-
-const target =
-document.querySelector(hash);
-
-if(target){
-
-setTimeout(function(){
-
-window.scrollTo({
-
-top:
-target.offsetTop - 80,
-
-behavior:
-'smooth'
-
-});
-
-},50);
-
-}
+nav.classList.remove('show');
 
 }
 
@@ -2004,8 +1840,8 @@ behavior:
 
 
 /* =====================================================
-   JALANKAN WEBSITE
-   ===================================================== */
+   NAVIGATION EVENT
+====================================================== */
 
 window.addEventListener(
 'hashchange',
@@ -2013,14 +1849,15 @@ route
 );
 
 
-route();
-
+/* =====================================================
+   START
+====================================================== */
 
 load();
 
+route();
+
 </script>
 
-
 </body>
-
 </html>

@@ -19,8 +19,15 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script>
 <script>
 const sb=supabase.createClient(window.SUPABASE_URL,window.SUPABASE_ANON_KEY), esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const SUPABASE_KEY =
+const SUPABASE_URL =
+  "https://ecufesvndczpxtjjkznf.supabase.co";
+const SUPABASE_KEY =
   "sb_publishable_gZHRu-Mptte4AeOXBYQ_dQ_qinsK7Z2";
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 function tab(id,el){document.querySelectorAll('.tab').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));el?.classList.add('active')}
 async function login(){loginMsg.textContent='Memeriksa...';const {error}=await sb.auth.signInWithPassword({email:email.value,password:password.value});if(error){loginMsg.textContent=error.message;return}await init()}
 async function logout(){await sb.auth.signOut();location.reload()}
